@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>强制类型转换</title>
+</head>
+
+<script type="text/javascript">
+	var i="100";
+	alert(Number(i));
+	
+	var i="-100";
+	alert( typeof(Number(i)));//-100
+	
+	var i="    ";
+	alert( typeof(Number(i)));//0
+	
+	var i="";
+	alert( typeof(Number(i)));//0
+	
+	var i=true;
+	alert( typeof(Number(i)));//1
+	
+	var i=false;
+	alert( typeof(Number(i)));//0
+	
+	var i=null;
+	alert( typeof(Number(i)))//0
+	
+	var i="123abc";
+	alert( typeof(Number(i)));//NaN
+	
+	var i;//在js里面，如果一个变量已经定义了，那么你重新定义，但是不赋值的话，不会被改变
+	alert( typeof(Number(i)));//NaN
+	
+	var i="abc100";
+	alert( typeof(Number(i)));//NaN
+	
+	
+</script>
+
+<body>
+</body>
+</html>

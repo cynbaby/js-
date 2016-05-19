@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		for(var row=6;row>0;row--){	//空格数是和行数相关的
+			for(var i=6;i>row;i--){
+				document.write("&nbsp;");
+			}
+			for(var j=0;j<row;j++){
+				document.write("\u263a"+"&nbsp;")
+			}
+			document.write("<br />");
+		}
+	</script>
+</body>
+</html>

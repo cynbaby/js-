@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>省市连接</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var prov=new Array();
+		prov["湖南省"]=new Array("长沙","衡阳","祁阳");
+		prov["安徽省"]=new Array("合肥","芜湖","岳西");
+		var str=prompt("请输入你要找的省份","湖南省");
+		alert(str+"有以下市: "+prov[str]);
+
+		var city=new Array();
+		city["长沙市"]=new Array("长沙一县","长沙二县","长沙三县");
+		city["衡阳市"]=new Array("衡阳一县","衡阳二县","衡阳三县");
+		city["祁阳市"]=new Array("祁阳一县","祁阳二县","祁阳三县");
+		city["合肥市"]=new Array("合肥一县","合肥二县","合肥三县");
+		var str2=prompt("请输入你要找的城市","长沙市");
+		alert(str2+"有以下县: "+city[str2]);
+
+		console.log(prov["湖南省"][1]);
+	</script>
+</body>
+</html>

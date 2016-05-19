@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>排序</title>
+</head>
+
+<body>
+	<script>
+    	var arr=new Array(3,9,1,5,7);
+		document.write("排序前的数组:"+arr+"<br />");
+		arr.sort();
+		document.write("排序后的数组:"+arr+"<br />");
+		
+		var arr=new Array(52,15,51,5,157);
+		document.write("排序前的数组:"+arr+"<br />");
+		arr.sort();
+		document.write("排序后的数组:"+arr+"<br />");
+		
+		/*Array.sort
+		a>0   那么这两个数值就会调换
+		a<0   那么这两个数值就不会调换
+		*/
+		var arr=new Array(52,15,51,5,157);
+		document.write("排序前的数组:"+arr+"<br />");
+		//               参数  代码
+		arr.sort(function(a,b){ return a>b?1:-1});//从小到大的排序
+		document.write("排序后的数组:"+arr+"<br />");
+		
+		
+		var a=[1,67,345,645,23,42,86,76,90,34,65,2];
+		document.write("排序前的数组:"+a+"<br />");
+		a.sort(function(a,b){ return Math.random()-0.5});//取随机数，范围（0-1）//随机排序
+		document.write("排序后的数组:"+a+"<br />");
+		
+		//倒序
+		var arr=new Array(3,9,1,5,7);
+		document.write("排序前的数组:"+arr+"<br />");
+		arr.reverse();
+		document.write("排序后的数组:"+arr+"<br />");
+		arr.sort(function(a,b){ return -1});
+		document.write("另一种方法排序后的数组:"+arr+"<br />");
+    </script>
+</body>
+</html>

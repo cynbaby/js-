@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>10_定义一个封装类</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	function Person(  name, age ){
+		this.name=name;   
+		this.age=age;	
+	}
+	
+	Person.prototype={
+			sayHello:function( name ){
+				document.write( this.name+" 说 hello to "+ 	 name +"<br />");
+			},
+			sayBye:function(  name){
+				document.write( this.name+" 说 bye to "+ 	 name +"<br />");	
+			}
+	};
+	
+	var p1=new Person("张三", 20);
+	p1.sayHello("smith");
+	
+	Person.prototype.sayHello=function(  name   ){   //对功能的重写
+		document.write( this.name+" 说 您好 给 "+ 	 name +"<br />");	
+	}
+	p1.sayHello("smith");
+	p1.sayBye("tom");
+	
+	Person.prototype.eat=function(  food   ){   //对功能的重写
+		document.write( this.name+" 吃 "+ 	 food +"<br />");	
+	}
+	p1.eat("apple");
+	p1.sayHello("apple");
+</script>
+
+</body>
+</html>

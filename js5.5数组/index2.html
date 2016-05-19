@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>如何取值赋值</title>
+</head>
+
+<body>
+	<script>
+    	var arr=new Array(3);
+		//给数组赋值，那么一定要先弄清楚，你要付给谁，请带上数组的索引
+		arr[0]=1;
+		arr[1]=2;//也可以付值string类型
+		arr[2]=3;
+		document.write(arr);
+		
+		//alert(arr[1]);
+		
+		alert(arr.length);
+		
+		arr[8]=10;
+		alert(arr.length);//8,前面的值都是undefined
+		
+		for(var i=0;i<arr.length;i++){
+			document.write(arr[i]+"<br />");
+			}
+		//数组长度赋值
+		arr.length=2;
+		alert(arr);
+    </script>
+</body>
+</html>

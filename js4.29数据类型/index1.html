@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<pre>
+	js的三大组成部分：
+    	1、ECMScript：描述
+        2、BOM Browser()
+        3、DOM
+        js的基本数据类型：
+    </pre>
+    <pre>
+    	1,String        字符串类型
+        2,Boolean       布尔类型
+        3,Number        数字类型
+        4.Null           空
+        5,Undefined       未定义
+    ja引用类型：
+    	1、Array    数据
+        2,Object    对象
+        3,Function  函数
+    </pre>
+    <script type="text/javascript">
+    	var i=true;
+		document.write(i+"数据类型为: "+typeof(i)+"<br />");
+		var i=false;
+		document.write(i+"数据类型为: "+typeof(i)+"<br />");
+		var i=100;
+		document.write(i+"数据类型为: "+typeof(i)+"<br />");
+		var j;
+		document.write(j+"数据类型为: "+typeof(j)+"<br />");
+		var k=null;
+		document.write(k+"数据类型为: "+typeof(k)+"<br />");
+		
+		document.write("<br />","<br />");
+			var i=100;
+			document.write(i+"数据类型为: "+typeof(i)+"<br />");
+			var i=12.5;
+			document.write(i+"数据类型为: "+typeof(i)+"<br />");
+			var i=1.23e7;
+			document.write(i+"数据类型为: "+typeof(i)+"<br />");
+			var i=0x45c;
+			document.write(i+"数据类型为: "+typeof(i)+"<br />");
+			var i=034;
+			document.write(i+"数据类型为: "+typeof(i)+"<br />");
+		document.write("<br />","<br />");
+			var str="123abc"
+			alert(typeof(str++));
+			alert(str++);//NaN:not a number  不是一个数字的数字
+			
+			var i="abc";
+			i=i+1;
+			alert(i);//abc1
+			alert(typeof(i));//string
+			
+			var i="abc";
+			i++;
+			alert(i);//NaN
+			alert(typeof(i));//number
+			
+			document.write("<br />","<br />");
+			
+			
+			
+    </script>
+</body>
+</html>

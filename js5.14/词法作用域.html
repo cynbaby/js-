@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>词法作用域</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		function f1(){
+			var a=1;
+			f2();
+		}
+		//当f2函数在这里声明时，它访问的作用域
+		function f2(){
+			return a;
+		}
+
+		document.write(  f2());
+		*/
+	////////////////////////////////
+	//解决方案：将f2的声明移入f1中，
+	
+	/*
+	function f1(){
+		var a=1;
+		function f2(){  //这样声明的话，f2（）就变成了一个f1（）的私有函数，外部无法调用
+			return a;
+		}
+		return f2();
+	}
+	document.write(  f1());
+	*/
+
+	////////////////////////换成匿名内部函数
+	/*function f1(){
+		var a=1;
+		return function(){
+			return a;
+		}()
+	}
+	document.write(  f1());
+	*/
+
+	var a=10;
+	function f1(){
+		var a=20
+		return function(){
+			return a;
+		}
+	}
+	a=12;
+	a=a*2;
+	document.write(  f1()());
+	</script>
+</body>
+</html>

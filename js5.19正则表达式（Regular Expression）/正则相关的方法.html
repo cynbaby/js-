@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则相关的方法</title>
+</head>
+<body>
+	test:
+	\n  :转译字符，表示换行
+	\t  :表示空格
+	\r  :制表符
+
+	在正则里面也有转译字符
+	\s:空格
+	\S:非空格
+	\d:数字
+	\D:非数字
+	\w:字符（大小写字母，数字，下划线）
+	\W:非字符
+	<script type="text/javascript">
+		var str="abcde";
+		//
+		var reg=/b/;
+
+		console.log( reg.test(str) );
+
+		var str2="12345ab78";
+		var reg2=/\D/;
+		if(reg2.test(str2)){
+			alert("不全是数字");
+		}else{
+			alert("全是数字");
+		}
+	</script>
+</body>
+</html>

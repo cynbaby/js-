@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>字符串</title>
+</head>
+
+<body>
+	xxxx.xxx    属性
+    xxxx.xxx()    方法
+	<script>
+	//document.title="*****aaaaa*****";
+		//window.setInterval("docment.title",1000);
+		
+		var str="* * * 欢 迎 进 入 * * * ";
+		var arr=str.split(" ");//通过某个字符，把字符串拆分成一个数组
+		
+		function run(){
+			//*       * * 欢 迎 进 入 * * * 
+			var s=arr.shift();
+			// * * 欢 迎 进 入 * * * * 
+			arr.push(s);
+			document.title=arr.join(" ");
+			}
+			window.setInterval("run()",300);
+    	var str="abcde";
+		console.log(str.length);
+		
+		var str="abcdedcba";
+		//                      如果是负数，会变成0
+		console.log(str.indexOf("c",-4));
+		console.log(str.lastIndexOf("e",-4));
+		
+		var str2="fpc";
+		console.log(str.concat(str2));
+		
+		console.log(str.slice(2,-5));  //从2开始，截取到5     cd
+		
+		console.log(str.sub());
+		console.log(str.substr(2,4));//从2开始，截取4个
+		console.log(str.substring(2,0));//从2开始，截取到4     ab
+		console.log(str.substring(0,2));//如果是负数，会转换为0
+		
+		var str="a1b1c1";
+		str=str.replace("c","e");
+		console.log(str);
+		
+		var x=str.split("1");   //   ->    join()
+		console.log(x);
+    </script>
+</body>
+</html>

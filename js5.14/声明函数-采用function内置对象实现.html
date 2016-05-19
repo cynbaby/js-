@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="UTF-8">
+	<title>声明函数-采用function内置对象实现</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//
+		//
+		var add=new Function( "a","b"," document.write( a+b +'<br />' )");
+
+		add(1,2);
+
+		function add(a,b){
+			document.write( a+b+"<br />");
+		}
+		add(1,2);
+		
+	</script>
+</body>
+</html>

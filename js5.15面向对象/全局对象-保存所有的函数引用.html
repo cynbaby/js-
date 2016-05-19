@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>全局对象-保存所有的函数引用</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function show1(){
+			alert('a');
+		}
+		function show2(){
+			alert('b');
+		}
+
+		window['show1']();
+		window['show2']();
+
+		//循环出window中的所有成员
+		
+
+
+		//发现一个现象，用火狐浏览器可以正常运行，但是在谷歌上就死了，表示非常不解
+		//
+		
+	</script>
+</body>
+</html>

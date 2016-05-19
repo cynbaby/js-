@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>自循环调用（需要默写）</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function selfNext( arr ){
+			var index=0;
+			return function(){
+				return arr[index++];
+			}
+		}
+
+		var mynext=selfNext(  [1,2,3,4] );
+
+		while( a=mynext() ){
+			document.write(  a+"<br />" );
+		}
+		document.write(  mynext()+"<br />" );   //1     => mynext指的是一个函数，因为看到一个括号
+		document.write(  mynext()+"<br />"  );   //2
+		document.write(  mynext()+"<br />"  );   //3
+		document.write(  mynext()+"<br />"  ); 
+		document.write(  mynext()+"<br />"  ); 
+
+	</script>
+</body>
+</html>

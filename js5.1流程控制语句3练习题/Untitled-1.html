@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	sum=0;
+	for(var i=0;i<=100;i++){
+    	sum=sum+i;
+    }
+    document.write(sum);
+    
+    var i=0;
+    var sum=0
+    while(i<=100){
+    	sum=sum+i;
+        i++;
+    }
+    document.write(sum);
+    
+    
+    <script>
+    	for(var i=2;i<=100;i++){
+        	//用来判定你到底是不是一个素数
+        	var flag=true;
+			for(var j=2;j<i;j++){
+				if(i%j==0){
+					//如果能被整除，说明是不一个素数，那么这个flag变成false
+                	flag=false;
+                }
+			}
+			if(flag){
+				document.write(i+"<br />");
+			}
+		}
+    </script>
+</body>
+</html>

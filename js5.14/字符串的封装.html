@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>字符串的封装(需要默写)</title>
+</head>
+<body>
+	<script type="text/javascript">
+	//需求：封装一个person的信息  （  name，age 将属性封装起来）
+		var StringBuffer=(function(){
+			var arr=new Array();
+			return {
+				value:function(){
+					return arr.join("");
+				},
+				append:function( val){
+					arr[arr.length]=val;
+				}
+			};
+		}
+	)();
+
+		document.write("原始字符串:"+StringBuffer.value() +"<br />");    //  空行
+		StringBuffer.append("hello  ");
+		StringBuffer.append("world");
+		document.write("添加后的字符串:"+StringBuffer.value()+"<br />");  //    hello  world
+	</script>
+</body>
+</html>

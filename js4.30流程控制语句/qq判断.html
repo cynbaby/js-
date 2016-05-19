@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		var qq=prompt("请输入您的QQ号码：");
+		if(qq==null || qq==""){
+			alert("你并没有输入qq号");
+		}
+		else if(isNaN(qq)){
+			alert("这不是一个数字");
+		}
+		else if(parseInt(qq)!=qq){
+			alert("不能输入小数");
+		}
+		else if(parseInt(qq)+""!=qq){
+			alert("不能有0在最前面");
+		}
+		else if(Number(qq)<100000 || Number(qq)>10000000000){
+			alert("输入的数字必须在5位以上、10位以下");
+		}
+	</script>
+</body>
+</html>

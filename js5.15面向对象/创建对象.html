@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//1，利用内置对象来创建对象
+		var arr=new Array();
+		var d=new Date();
+		var o=new Object();
+
+		//2，利用对象自变量
+		var b={};
+		var c={name:'zy',age:20};
+
+		document.write( typeof( arr )+"  "+typeof(d )+"\t"+typeof(o)+"  "+typeof(b )+"\t"+typeof(c)+"<br />");
+		//输出的结果都是object，var创建的是一个对象
+	</script>
+</body>
+</html>

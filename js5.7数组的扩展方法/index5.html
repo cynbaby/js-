@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr=["*","##","***","&&","****","##*"];
+		arr[7]="**";
+		arr.sort();
+		arr2=arr.splice(3,4);
+		var arr3=[];
+		for(var i=0;i<4;i++){
+			arr3=arr2[i];
+			document.write(arr3+"<br />");
+		}
+		console.log(arr2);
+	</script>
+</body>
+</html>

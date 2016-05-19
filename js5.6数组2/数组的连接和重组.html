@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//连接		join()
+		var arr=new Array(1,2,3);
+		//参数：是一个值，字符串类型的值   ->    string类型的值   返回字符串
+		var str=arr.join("=");
+		console.log(str+"----"+arr);
+		var str=arr.join(1);  //会自动把1转换为string类型的值
+		console.log(str+"----"+arr);
+		var str=arr.join();  //会输出1,2,3   因为默认是逗号
+		console.log(str+"----"+arr);
+		var str=arr.join("");  //123
+		console.log(str+"----"+arr);
+
+
+
+
+		//重组		concat()
+		// var a=new Array(1,2,3);
+		// var b=new Array("c","d","e");
+		// a=b.concat(a);
+		// console.log(a);
+
+
+		// for(i=0;i<a.length;i++){
+		// 	b.push(a[i]);
+		// }
+		// console.log(b);
+		//数组合并，除了放数组以外，还可以放值
+		a=a.concat(b,"fbc",a);
+		console.log(a);
+	</script>
+</body>
+</html>

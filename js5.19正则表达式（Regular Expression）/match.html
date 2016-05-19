@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>match</title>
+</head>
+<body>
+	match:返回匹配的数组
+	<script type="text/javascript">
+		var str="a1bc34567ef123gh";
+		var reg=/\d/;
+		console.log( str.match(reg));
+
+		//
+		//
+		var reg=new RegExp("\\d","g");//
+		console.log( str.match(reg));
+
+		var reg=/\d\d/;
+		//
+		//
+		var reg=/\d+/g;
+		console.log( str.match(reg));
+	</script>
+</body>
+</html>

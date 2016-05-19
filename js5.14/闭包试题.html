@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的应用</title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+		var arr=["apple","pear","banana"];
+		var innerArray=new Array();
+
+		/*
+		for(var i=0;i<arr.length;i++){
+			var item=arr[i];
+			innerArray[i]=function( ){
+				document.write( item +"<br />");
+			}
+		}
+		
+		//用以上代码运行出来的是banana banana banana,则说明在运行过程中代码并不没有将每一次调用函数的结果给呈现出来，相反，它把最后的结果给显示出来了，即少了按理说的一次应该是apple，第二次应该是pear，第三次才是banana。以下则采用两种解决方案.
+	
+		
+		//解决方案一：外部函数
+		function write(item){
+			return function(){   //闭包
+				document.write(  item+"<br />")
+			}
+		}
+		for( var i=0;i<arr.length;i++){
+			var item=arr[i];
+			innerArray[i]=write( item);
+		}
+		*/
+
+
+		//解决方案二：也可以使用自调用的匿名函数完成
+		for( var i=0;i<arr.length;i++){
+			var item=arr[i];
+			innerArray[i]=( function(item){
+				return function(){
+					document.write( item+"<br />");
+				}
+			})(item);
+		}
+
+		
+	for( var i=0;i<innerArray.length;i++){
+			innerArray[i]();
+		}
+
+
+		
+	</script>
+</body>
+</html>

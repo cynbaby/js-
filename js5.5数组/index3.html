@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<script>
+    	var grade=new Array(71,78,98,70,80,86,74,63,73,74,75,84,93,86,94,84,75,82,81);
+		for(var i=0;i<grade.length;i++){
+			if(grade[i]>=90){
+				grade[i]="优秀";
+			}else if(grade[i]>=80){
+				grade[i]="良好";
+			}else if(grade[i]>=70){
+				grade[i]="中等";
+			}else if(grade[i]>=60){
+				grade[i]="及格";
+			}else{
+				grade[i]="不及格"
+			}
+		}
+		document.write(grade+"<br />");
+		
+		for(var i in grade){
+			document.write(grade[i]+"<br />");
+			}
+	</script>
+</body>
+</html>

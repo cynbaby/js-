@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的应用bug-保留现场(需要默写任何一种方法)</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+		function f(){
+			var a=[];
+			for( var i=0;i<3;i++){
+				a[i]=function(){
+					return i*2;      //  在这里我们想运行处的结果是0 2 4，但是依照这样的代码，我们运行出的只是6 6 6 。所以，代码有误，我们需要改进...一下为两种解决方案
+				}
+			}
+			return a;
+		}
+		
+	
+	
+	//解决方案一：外部函数(顾名思义，在原基础上，在建一个外部函数，并与里边函数连上，使里能调用到外，从而执行外)  最后运行的结果是 0  2  4 
+	function inner( x ){
+		return function(){
+			return x*2;
+		}
+	}
+
+	function f(){
+		var a=[];
+		for( var i=0;i<3;i++){
+			a[i]=inner(i);
+		}
+		return a;
+	}
+	*/
+	
+	//解决方案二：匿名函数与闭包
+	function f(){
+		var a=[];
+		for( var i=0;i<3;i++){
+			a[i]=function(x){
+				return function( ){  //闭包
+					return x*2;
+				}
+			}( i );
+		}
+		return a;
+	}
+
+	/*
+	//解决方案三：内部函数:便于维护
+	function f(){
+		
+		function inner(x){
+			return function(){
+				return x*2;
+			}
+		}
+
+		var a=[];
+		for( var i=0;i<3;i++){
+			a[i]=inner(i);
+		}
+		return a;
+	}
+
+
+	/*运行结果的输出部分*/
+	var result=f();
+	document.write( result[0]() +"<br />"+result[1]()+"<br />"+result[2]() );
+	</script>
+</body>
+</html>

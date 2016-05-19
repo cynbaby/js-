@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		for(var num=2;num<=100;num++){
+			var flag=true;//用来判定你到底是不是一个素数
+			for(var j=2;j<num;j++){
+				if(num%j==0){
+					//如果能被整除，说明不是一个素数，那么这个flag变成false
+					flag=false;
+				}
+			}
+			if(flag){
+				document.write(num+"<br/>");
+
+			}
+		}
+	</script>
+</body>
+</html>

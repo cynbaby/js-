@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr=[1,2,3,'4','3',5,2,'8'];
+		var arr2=[2,3,'4',8,20];
+		var x=arr.concat(arr2);
+		var y=[x[0]];
+		console.log(x);
+		for(i=0;i<x.length;i++){
+				if(x[i]===y[y.length-1]){
+					y.push(x[i]);
+				}
+		}
+		console.log(y);
+	</script>
+</body>
+</html>

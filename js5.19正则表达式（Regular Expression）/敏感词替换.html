@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>敏感词替换</title>
+	<style>
+	textarea{
+		width: 400px;
+		height: 200px;
+	}
+	input{
+		margin: 10px 0px;
+	}
+	</style>
+</head>
+<body>
+	<textarea id="first"></textarea><br />
+	<input type="button" value="过滤" onclick="filter()"><br />
+	<textarea id="late"></textarea>
+
+	<script type="text/javascript">
+		function filter(){
+			//
+			
+			var str=document.getElementById("first").value;
+			//alert(str);
+			//
+			//
+			var reg=/他妈|人妖|你他妈/g;
+			document.getElementById("late").value=str.replace(reg,"**");
+		}
+	</script>
+</body>
+</html>

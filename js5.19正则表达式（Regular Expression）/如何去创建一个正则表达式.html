@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>如何去创建一个正则表达式</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//两种方法
+		//1，直接创建变量的方式去创建
+		var reg=/a/i;//加个i就不区分大小写了
+		//2,通过创建RegExp对象来创建正则
+		var reg=new RegExp("abc","g");
+		/*
+		g:全局
+		i:不区分大小写
+		m:多行查找
+		 */
+	</script>
+</body>
+</html>
