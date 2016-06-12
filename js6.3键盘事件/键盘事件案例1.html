@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>键盘事件案例1</title>
+</head>
+<body>
+	<pre>
+		获得焦点：focus
+		失去焦点：blur
+	</pre>
+
+	<div>
+		<p id="myp">当前最火的新闻</p>
+		<textarea id="myt" row="5px" clos="40px"></textarea>
+
+		<script type="text/javascript">
+			var myp=document.getElementById("myp");
+			var myt=document.getElementById("myt");
+			myt.onfocus=function(){
+				var str=myt.value;
+				if(str.length<=140){
+					myp.innerHTML="你还可以输入"+(140-str.length)+"个字";
+				}else{
+					myp.innerHTML="你已经超出"+(str.length-140)+"个字";
+				}
+			}
+			myt.onblur=function(){
+				myp.innerHTML="当前最火的新闻";
+			}
+			myt.onkeyup=function(){  //此方法有个bug，就是如果不松开键盘字数就不会跳变，所以最好的用keypress或keydown来解决，但是暂时还不会。（尴尬）
+				var str=myt.value;
+				if(str.length<=140){
+					myp.innerHTML="你还可以输入"+(140-str.length)+"个字";
+				}else{
+					myp.innerHTML="你已经超出"+(str.length-140)+"个字";
+				}
+			}
+		</script>
+	</div>
+</body>
+</html>

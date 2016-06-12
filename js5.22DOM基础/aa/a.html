@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM查找访问节点</title>
+	<style type="text/css">
+		img{
+			width:200px;
+			height:200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<img src="fruit1.jpg" alt="水果1" id="fruit1" />
+		<img src="fruit2.jpg" alt="水果2" id="fruit2" />
+		<h1 id="like">选择你喜欢的水果：</h1>
+		<form id="form1">
+			<input name="enjoy" type="checkbox" value="apple" />苹果
+			<input name="enjoy" type="checkbox" value="banana" />香蕉
+			<input name="enjoy" type="checkbox" value="grape" />葡萄
+			<input name="enjoy" type="checkbox" value="pear" />梨
+			<input name="enjoy" type="checkbox" value="watermelon" />西瓜
+		</form>
+		<form id="form2">
+			<input name="btn" type="button" value="显示图片1路径" onclick="show()" /><br />
+			<input name="btn" type="button" value="查看喜欢的水果" onclick="look()" /><br />
+			<input name="btn" type="button" value="改变图片2" onclick="change()" /><br />
+			<input name="btn" type="button" value="点击创建图片" onclick="creatImg()" /><br />
+			<input name="btn" type="button" value="全选" onclick="allOk()" /><br />
+			<input name="btn" type="button" value="全不选" onclick="noOk()" /><br />
+			<input name="btn" type="button" value="反选" onclick="notall()" /><br />
+		</form>
+		
+		
+	</div>
+
+	<script type="text/javascript">
+		function show(){
+			var f1=document.getElementById("fruit1");
+			alert( f1.getAttribute("src") );
+			alert( f1.src );
+		}
+		
+		function look(){
+			var inputList=document.getElementsByName("enjoy");
+			var like="";
+			//  遍历  循环
+			for(var i=0;i<inputList.length;i++){
+				if(inputList[i].checked==true){
+					like=like+inputList[i].value+",";
+				}
+			}
+			alert(like);
+		}
+
+
+		var rand1=0;
+		var useRan=0;
+		img=new Array;
+		
+		img[1].src="fruit1.jpg";
+		
+		img[2].src="fruit2.jpg";
+		
+		img[3].src="fruit3.jpg";
+		
+		img[4].src="fruit4.jpg";
+		function change(){
+				var f2=img.length-1;
+				do{
+					var randnum=Math.random();
+					rand1=Math.random((f2-1)*randnum)+1;
+
+				}while(rand1==useRan);
+				useRan=rand1;
+				document.randimg.src=img[useRan].src
+;			//var f2=document.getElementById("fruit2");
+			//f2.setAttribute("src","fruit4.jpg");
+		}
+
+
+		
+		function allOk(){
+			var inputList=document.getElementsByName("enjoy");
+			for (var i = 0; i < inputList.length; i++) {
+				inputList[i].checked=true;
+			}
+		}
+
+		function noOk(){
+			var inputList=document.getElementsByName("enjoy");
+			for (var i = 0; i < inputList.length; i++) {
+				inputList[i].checked=false;
+			}
+		}
+
+		function notall(){
+			var inputList=document.getElementsByName("enjoy");
+			for (var i = 0; i < inputList.length; i++) {
+				if(inputList[i].checked==true){
+					inputList[i].checked=false;
+				}else{
+					inputList[i].checked=true;
+				}
+			}
+		}
+		function creatImg(){
+			//创建标签
+			var img=document.createElement("img");
+			//设置属性
+			img.setAttribute("src","fruit3.jpg");
+			img.setAttribute("alt","水果");
+			//问题：如果添加到网页里面去
+			//document.body.appendChild(img);  -->运行结果只会在boby里面也就是在各种按钮之后出现，所以，不对。
+			//document.body.insertBefore(img,document.getElementById("div1"));   -->这句话的输出效果是，是在原有的图片的上一行输出图片，所以，也不对。
+			//document.getElementById("div1").appendChild(img);  -->输出的效果和第一条的一样，所以，不对。
+			document.getElementById("div1").insertBefore(img,document.getElementById("fruit1")); //输出的效果是，在现有的图片之前添加图片，所以，对啦。
+			//document.body.insertBefore(img,document.getElementById("fruit1"));  -->没有输出效果，所以不对。
+		}
+	</script>
+</body>
+</html>

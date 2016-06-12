@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>画布</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0 auto;
+		}
+		#canvas{
+			padding:0px auto;
+			
+			display:block;
+		}
+		#xpc{
+			width:80px;
+			height: 40px;
+			margin:0 13%;
+			position: relative;
+
+		}
+		#zx{
+			width:80px;
+			height: 40px;
+			margin: 0 -12%;
+		}
+	</style>
+</head>
+<body>
+	<input id="xpc" type="button" value="橡皮擦" onclick="show()" />
+	<input id="zx" type="button" value="可变直线" onclick="showa()" />
+	<canvas id="canvas">
+		你的浏览器不支持canvas，请更新浏览器
+	</canvas>
+
+	<script type="text/javascript">
+		//定义canvas的大小
+		var canvasWidth=800;
+		var canvasHeight=canvasWidth;
+		//定义变量
+		var flag=false;
+		var lastLoc={x:0,y:0};
+
+		//得到context
+		var canvas=document.getElementById("canvas");
+		var context=canvas.getContext("2d");
+
+		//设置canvas的大小
+		canvas.width=canvasWidth;
+		canvas.height=canvasHeight;
+
+		//开始绘制
+		draw();
+
+		function draw(){
+			context.save();
+			//这一段canvas的属性，只会在这一段起作用
+			//定义画笔的颜色
+			context.strokeStyle="rgb(230,10,10)";
+			//开始绘制路线/路径      画边框
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(canvasWidth,0);
+			context.lineTo(canvasWidth,canvasHeight);
+			context.lineTo(0,canvasHeight);
+			//绘制路径结束
+			context.closePath();
+			//画笔的粗线
+			context.lineWidth=6;
+			//显示到canvas里面
+			context.stroke();
+
+			//画米字格
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(canvasWidth,canvasHeight);
+
+			context.moveTo(canvasWidth,0);
+			context.lineTo(0,canvasHeight);
+
+			context.moveTo(canvasWidth/2,0);
+			context.lineTo(canvasWidth/2,canvasHeight);
+
+			context.moveTo(0,canvasHeight/2);
+			context.lineTo(canvasWidth,canvasHeight/2);
+
+			context.lineWidth=1;
+			context.stroke();
+
+			context.restore();
+		}
+
+		//用户开始绘制
+		canvas.onmousedown=function(e){
+			delDefault(e);
+			flag=true;
+			lastLoc=windowToCanvas(e.clientX,e.clientY);
+		}
+		canvas.onmouseup=function(e){
+			delDefault(e);
+			flag=false;
+		}
+		canvas.onmouseout=function(e){
+			delDefault(e);
+			flag=false;
+		}
+		canvas.onmousemove=function(e){
+			delDefault(e);
+			if(flag){
+				//开始绘制
+				var curLoc=windowToCanvas(e.clientX,e.clientY);
+				context.beginPath();
+				context.moveTo(lastLoc.x,lastLoc.y);
+				context.lineTo(curLoc.x,curLoc.y);
+				context.strokeStyle="rgb(148,105,31)";
+				context.lineWidth=20;
+				context.lineCap="round";  //定义线的结束位置为形状为圆角
+				context.lineJoin="round";//定义线的形状为圆角
+				context.closePath();
+				context.stroke();
+				//结束位置应该是下一次的开始位置
+				lastLoc=curLoc;
+			}
+		}
+
+		//
+		function show(){
+			canvas.onmousemove=function(e){
+			delDefault(e);
+			if(flag){
+				//开始绘制
+				var curLoc=windowToCanvas(e.clientX,e.clientY);
+				context.beginPath();
+				context.moveTo(lastLoc.x,lastLoc.y);
+				context.lineTo(curLoc.x,curLoc.y);
+				context.strokeStyle="rgb(255,255,255)";
+				context.lineWidth=20;
+				context.lineCap="round";  //定义线的结束位置为形状为圆角
+				context.lineJoin="round";//定义线的形状为圆角
+				context.closePath();
+				context.stroke();
+				//结束位置应该是下一次的开始位置
+				lastLoc=curLoc;
+			}
+		}
+		}
+		
+
+		//组织浏览器的默认行为
+		function delDefault(event){
+			if(window.event){
+				e=window.event;
+				e.returnValue=false;
+				e.preventDefault();
+			}else{
+				e=event;
+				e.preventDefault();
+			}
+		}
+
+		//坐标转换
+		function windowToCanvas(x,y){
+			//获得canvas的盒子，然后通过这个盒子，来获得canvas的left和top
+			var box=canvas.getBoundingClientRect();
+			//console.log("x:"+(x-box.left)+"---y:"+(y-box.top));
+			return{x:Math.floor(x-box.left),y:Math.floor(y-box.top)};
+		}
+	</script>
+</body>
+</html>

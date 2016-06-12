@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>keycode</title>
+</head>
+<body>
+	
+	ASCII:
+	fromCharCode:把一个unicode编码值转换成字符值，如果没有这个的话，那么输出的就是ASCII值。
+
+	<input type="text" value="keydown" id="inp1" /><br /><br />
+	<input type="text" value="keypress" id="inp2" />
+	<script type="text/javascript">
+		var inp1=document.getElementById("inp1");
+		var inp2=document.getElementById("inp2");
+		inp1.onkeydown=function(event)
+			var e=event?event:window.event;
+			var keycode=e.keyCode;
+			var txt=String.fromCharCode(keycode);
+			console.log("keydown: "+txt);
+		};
+		inp2.onkeypress=function(event){
+			var e=event?event:window.event;
+			//兼容firefox
+			if(e.keyCode){
+				var keycode=e.keyCode;
+				var txt=String.fromCharCode(keycode);
+			}else{
+				//firefox
+				var keycode=e.which;  //取键值
+				var txt=String.fromCharCode(keycode);
+			}
+			console.log("keypress: "+txt);
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>如何用js改变样式</title>
+</head>
+<body>
+	<input type="text" value="abcde" />
+	<div>
+		<p>测试文字</p>
+	</div>
+	<script type="text/javascript">
+		/**/
+		var mydiv=document.getElementsByTagName("div")[0];
+		//可以取出标签的
+		console.log("innerHTML: "+mydiv.innerHTML);
+		//只能取出文本值
+		console.log("innerText: "+mydiv.innerText);
+	</script>
+
+	<script type="text/javascript">
+		var mydiv=document.getElementsByName("div")[0];
+		//
+		//
+		mydiv.innerText="<p>测试文字</p>";
+	</script>
+</body>
+</html>

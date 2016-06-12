@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px auto;
+			font-family:"微软雅黑";
+			color:#333;
+			}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr=[["张三","19","男"],["李四","22","女"],["王五","20","男"],["赵六","21","女"]];
+		//
+		var table=document.createElement("table");
+		table.setAttribute("border","1px");
+		table.setAttribute("width","400px");
+		table.setAttribute("cellpadding","0px");
+		table.setAttribute("cellspacing","0px");
+		//
+		var str="";
+
+		for(var i=0;i<arr.length;i++){
+			//
+			str+="<tr>";
+			for(var j=0;j<arr.length;j++){
+				//
+				str+="<td>"+arr[i][j]+"</td>"
+			}
+			str+="</td>";
+		}
+
+		table.innerHTML=str;
+		document.body.appendChild(table);
+	</script>
+</body>
+</html>

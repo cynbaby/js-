@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>案例1</title>
+</head>
+<body>
+	<img src="..." />
+	onunload:卸载事件。网页关闭之前执行
+	<script type="text/javascript">
+	//支持IE，也兼容火狐。
+		window.onunload=function(){
+			//千万不要用alert
+			//打开一个网页
+			window.open("http://www.baidu.com");
+		}
+		//onunload值兼容IE，那么
+		window.onbeforeunload=function(){
+			//注意，此事件必须return
+			return "真的要离开嘛";
+		}
+	</script>
+</body>
+</html>

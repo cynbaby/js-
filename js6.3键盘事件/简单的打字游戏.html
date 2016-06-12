@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单的打字游戏</title>
+	<style type="text/css">
+		.style1{
+			color: green;
+		}
+		.style2{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	打字练习：<h2 id="test"></h2>
+	<p>输入内容：
+		<input name="testfield" type="text" size="50" id="inp" />
+	</p>
+
+	<script type="text/javascript">
+		var str="welcome to study center";
+
+		window.onload=function(){
+			var htmlstr="";
+		for(var i=0;i<str.length;i++){
+			htmlstr+="<span id='myspan"+i+"'>"+str.substring(i,i+1)+"</span>";
+			}
+			document.getElementById("test").innerHTML=htmlstr;
+		}
+		
+		var j=0;
+		var inp=document.getElementById("inp");
+		inp.onkeydown=function(event){
+			var e=event?event:window.event;
+			var keycode=e.keyCode;
+			//生成一个字符            大写A和小写a之间隔了32个长度
+			var realchar=string.fromCharCode(keycode+32);
+			//alert(realchar);
+			//a-z  空格  删除
+			if((keycode>=65 && keycode<=90) || keycode==8  || keycode==32 ){
+				if(str.substring(j,j+1)==realchar){
+					document.getElementById("myspan"+j).className="style1";
+				}else if(keycode==8){  //backspace
+					j--;
+					if(j<0){
+						j=0;
+					}
+					document.getElementById("myspan"+j).className="";
+					return;
+				}else{
+					document.getElementById("myspan"+j).className="style2";
+				}
+				j++;
+			}
+		}
+	</script>
+</body>
+</html>

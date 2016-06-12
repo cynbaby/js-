@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#canvas{
+	margin:0px auto;
+	display:block
+}
+</style>
+</head>
+
+<body>
+<input type="button" value="橡皮擦" onclick="show()">
+<input type="button" value="可选直线" onClick="show1()">
+<input type="button" value="变颜色" onclick="show2()">
+<input type="button" value="变大小" onClick="show3()">
+<canvas id="canvas">
+  你的浏览器不支持画布请尽快更新！
+</canvas>
+
+<script type="text/jscript">
+ var canvasWidth=800;
+ var canvasHeight=canvasWidth;
+ var flag=false;
+ var lastLoc={x:0,y:0};
+ var canvas=document.getElementById("canvas");
+ 
+ var context=canvas.getContext("2d");
+ 
+ canvas.width=canvasWidth;
+ canvas.height=canvasHeight;
+ 
+ draw();
+ 
+ function draw(){
+	 context.save();
+	 
+	 context.strokeStyle="rgb(230,10,10)";
+	 context.beginPath();
+	 context.moveTo(0,0);
+	 context.lineTo(canvasWidth,0);
+	 context.lineTo(canvasWidth,canvasHeight);
+	 context.lineTo(0,canvasHeight);
+	
+	 context.closePath();
+	 context.lineWidth=6;
+	 context.stroke();
+	  context.beginPath();
+	  context.moveTo(0,0);
+	 context.lineTo(canvasWidth,canvasHeight);
+	  context.closePath();
+	 context.lineWidth=3;
+	 context.stroke();
+	 context.beginPath();
+	  context.moveTo(0,canvasHeight);
+	 context.lineTo(canvasWidth,0);
+	  context.closePath();
+	 context.lineWidth=3;
+	 context.stroke();
+	 context.beginPath();
+	  context.moveTo(0,400);
+	 context.lineTo(800,400);
+	  context.closePath();
+	 context.lineWidth=3;
+	 context.stroke();
+	  context.beginPath();
+	  context.moveTo(400,0);
+	 context.lineTo(400,800);
+	  context.closePath();
+	 context.lineWidth=3;
+	 context.stroke();
+	 context.restore();
+ }
+  canvas.onmousedown=function(e){
+	  delDefault(e);
+	  flag=true;
+	  lastLoc=windowToCanvas(e.clientX,e.clientY);
+  }
+  canvas.onmouseup=function(e){
+	  delDefault(e);
+	  flag=false;
+  }
+  canvas.onmouseout=function(e){
+	  delDefault(e);
+	  flag=false;
+  }
+  canvas.onmousemove=function(e){
+	  delDefault(e);
+	  if(flag){
+		  var curLoc=windowToCanvas(e.clientX,e.clientY);
+		  context.beginPath();
+		  context.moveTo(lastLoc.x,lastLoc.y);
+		  context.lineTo(curLoc.x,curLoc.y);
+		  context.strokeStyle="rgb(0,255,0)";
+		  context.lineWidth=18;
+		  context.lineCap="round";
+		  context.lineJoin="round";
+		  context.closePath();
+		  context.stroke();
+		  
+		  lastLoc=curLoc;
+	  }
+  }
+  function delDefault(event){
+	  if(window.event){
+		  e=window.event;
+		  e.returnValue=false;
+		  e.preventDefault();
+	  }else{
+		  e=event;
+		  e.preventDefault();
+	  }
+  }
+  
+  function windowToCanvas(x,y){
+	  var box=canvas.getBoundingClientRect();
+	  return {x:Math.floor(x-box.left),y:Math.floor(y-box.top)};
+	  }
+  function show(){
+	  canvas.onmousemove=function(e){
+	  delDefault(e);
+	  if(flag){
+		  var curLoc=windowToCanvas(e.clientX,e.clientY);
+		  context.beginPath();
+		  context.moveTo(lastLoc.x,lastLoc.y);
+		  context.lineTo(curLoc.x,curLoc.y);
+		  context.strokeStyle="rgb(255,255,255)";
+		  context.lineWidth=18;
+		  context.lineCap="round";
+		  context.lineJoin="round";
+		  context.closePath();
+		  context.stroke();
+		  
+		  lastLoc=curLoc;
+	  }
+	  }
+  }
+   function show1(){
+	   c=prompt("请输入直线颜色RGB格式");
+	   d=prompt("请输入直线大小");
+	  canvas.onmousemove=function(e){
+	  delDefault(e);
+	  if(flag){
+		  var curLoc=windowToCanvas(e.clientX,e.clientY);
+		  context.beginPath();
+		  context.moveTo(lastLoc.x,lastLoc.y);
+		  context.lineTo(curLoc.x,curLoc.y);
+		  context.strokeStyle="rgb("+c+")";
+		  context.lineWidth=d;
+		  context.closePath();
+		  context.stroke();
+		  
+		  lastLoc=curLoc;
+	  }
+	  }
+  }
+	    function show3(){
+			  a=prompt("请输入画笔大小");
+	  canvas.onmousemove=function(e){
+	  delDefault(e);
+	  if(flag){
+		  var curLoc=windowToCanvas(e.clientX,e.clientY);
+		  context.beginPath();
+		  context.moveTo(lastLoc.x,lastLoc.y);
+		  context.lineTo(curLoc.x,curLoc.y);
+		  context.lineWidth=a;
+		   context.strokeStyle="rgb(0,255,0)";
+		  context.lineCap="round";
+		  context.lineJoin="round";
+		  context.closePath();
+		  context.stroke();
+		  
+		  lastLoc=curLoc;
+	  }
+	  }
+  }
+    function show2(){
+			 var b=prompt("请输入画笔颜色为RGB格式");
+			if(b==""){
+				b=0,255,0;
+				alert("你输入的值为空");
+			}else{
+				b=b;
+			}
+	  canvas.onmousemove=function(e){
+	  delDefault(e);
+	  if(flag){
+		  var curLoc=windowToCanvas(e.clientX,e.clientY);
+		  context.beginPath();
+		  context.moveTo(lastLoc.x,lastLoc.y);
+		  context.lineTo(curLoc.x,curLoc.y);
+		  context.lineWidth=a;
+		   context.strokeStyle="rgb("+b+")";
+		  context.lineCap="round";
+		  context.lineJoin="round";
+		  context.closePath();
+		  context.stroke();
+		  lastLoc=curLoc;
+	  }
+	  }
+  }
+</script>
+</body>
+</html>

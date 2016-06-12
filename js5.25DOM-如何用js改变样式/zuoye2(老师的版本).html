@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>zuoye2(老师的版本)树状菜单</title>
+	<style type="text/css">
+		boby{
+			font-size: 13px;
+			line-height: 20px;
+		}
+		a{
+			font-size: 13px;
+			color:#000000;
+		}
+		a:hover{
+			font-size: 13px;
+			color: #ff000;
+		}
+		img{
+			vertical-align: middle;
+			border: 0;
+		}
+		.no_circle{
+			list-style: none;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<b><img src="fold.gif">树形菜单</b>
+	<ul>
+		<a href="javascript:onclick=show('art') "><img src="fclose.gif" />
+	</ul>
+	<ul id="art" class="no_circle">
+		<li><img src="doc.gif">先锋写作</li>
+		<li><img src="doc.gif">小说散文</li>
+		<li><img src="doc.gif">诗风词韵</li>
+	</ul>
+
+	<ul>
+		<a href="javascript:onclick=show('photo') "><img src="fclose.gif" />
+	</ul>
+	<ul id="photo" class="no_circle">
+		<li><img src="doc.gif">真我风采</li>
+		<li><img src="doc.gif">视频贴图</li>
+		<li><img src="doc.gif">行行摄影</li>
+		<li><img src="doc.gif">Flash贴图</li>
+	</ul>
+
+	<ul>
+		<a href="javascript:onclick=show('home') "><img src="fclose.gif" />
+	</ul>
+	<ul id="home" class="no_circle">
+		<li><img src="doc.gif">我要买房</li>
+		<li><img src="doc.gif">楼市话题</li>
+		<li><img src="doc.gif">我要卖房</li>
+		<li><img src="doc.gif">租房心语</li>
+		<li><img src="doc.gif">二手市场</li>
+	</ul>
+
+	<ul>
+		<a href="javascript:onclick=show('game') "><img src="fclose.gif" />
+	</ul>
+	<ul id="game" class="no_circle">
+		<li><img src="doc.gif">红楼一梦</li>
+		<li><img src="doc.gif">笑坛论坛</li>
+		<li><img src="doc.gif">休闲生活</li>
+		<li><img src="doc.gif">大话春秋</li>
+	</ul>
+
+	<script type="text/javascript">
+		function show(d1){
+			if(document.getElementById(d1).style.display=='block'){
+				document.getElementById(d1).style.display='none'; //触动的层如果处于显示状态，即隐藏
+			}
+			else{
+				document.getElementById(d1).style.display='block'; //触动的层如果处于隐藏状态，即显示
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取节点当前样式(浏览器兼容)</title>
+	<style type="text/css">
+		div{
+			width: 400px;
+			height: 200px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="mydiv"></div>
+
+	<script type="text/javascript">
+		var mydiv=document.getElementById("mydiv");
+		console.log("width:"+mydiv.style.width);
+		//获取节点的当前样式  obj.currentStyle[attr]   此方法只兼容IE
+		//console.log("width:"+mydiv.currentStyle["width"] );
+		//                                          元素     伪类   -->此方法只兼容谷歌、ff，不兼容ＩＥ
+		//console.log("width:"+window.getComputedStyle(mydiv,false)["width"] );
+		
+		function getStyle(obj,attr){
+			if(obj.currentStyle){//这种判别方法
+				//说明你是ＩＥ浏览器
+				return obj.currentStyle[attr];
+			}else{
+				return window.getComputedStyle(obj,false)[attr];//伪类可以用null
+			}
+		}
+		console.log("width:"+getStyle(mydiv,"width") );
+	</script>
+</body>
+</html>

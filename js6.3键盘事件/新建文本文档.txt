@@ -1,0 +1,16 @@
+键盘事件：主要来兼容火狐浏览器
+
+keydown:某个键盘按键被按下。先触发的事件，再输入的值。--（在keycode这个属性中）所监听的都是大写。
+
+keypress:某个键盘按键被按下并松开（官方），--（在keycode这个属性中）严格区分大小写。
+但是事实上检验后，是，一直按下也会触发这个事件（除opera外）。
+也是先触发事件。再显示内容的。
+
+keydown与keypress的区别是：keydown必须产生一个字符才能触发事件。
+也就是说，keydown和keypress的区别在于，是否能监听用户按下ctrl,shift等功能键。
+keypress是监听不到这些功能键的，（Firefox除外），而keydown可以。
+
+keyup:某个键盘按键被松开，先显示内容再触发。
+
+document.documenElement.clientWidth:当前页面的宽度。
+document.documenElement.clientHeigh:当前页面的高度。

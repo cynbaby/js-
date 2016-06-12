@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习</title>
+</head>
+<body>
+	<pre>
+	Q:去除字符串中的空格
+	
+	练习题：去字符的前后空格  "     ycinfo     "->"ycinfo"
+	//  string.trim():  去除string后面多余的空格
+	</pre>
+	<script type="text/javascript">
+		
+		var str="   ycinfo   ";
+		document.write("("+str+")");
+		var reg=/^\s+|\s+$/g;
+		str=str.replace(reg,"");
+		document.write("("+str+")");
+	</script>
+</body>
+</html>

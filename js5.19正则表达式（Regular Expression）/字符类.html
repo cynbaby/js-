@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符类</title>
+</head>
+<body>
+	字符类[](在CSS里面代表可有可无,在正则里面代表在字符类里面任意选择一个进行匹配)
+	清楚html（例如h1）标签，和script（注入攻击）
+	<script type="text/javascript">
+		var str="aefcde";
+		var reg=/a[bcdef]c/;  //a(b|c|d|e|f)c/   反向引用
+		console.log( reg.test(str) );
+
+		//排除：在中括号里面，最开始加一个^,代表排除（非），
+		var str="atc";
+		var reg=/a[^be]c/;
+		console.log( reg.test(str) );
+
+		//范围  -   注意：必须小到大的
+		var str="atc";
+		var reg=/a[a-c]c/;
+		console.log( reg.test(str) );
+	</script>
+</body>
+</html>

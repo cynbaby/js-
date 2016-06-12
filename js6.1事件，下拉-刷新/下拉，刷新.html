@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>下拉，刷新</title>
+	<style type="text/css">
+	*{
+		padding: 0px;
+		margin: 0px auto;
+	}
+	#mainContent{
+		width: 200px;
+		height: 300px;
+		border:1px solid #ccc;
+		margin-top: 20px;
+		overflow: scroll;
+	}
+	#myContent{
+		width: 100%;
+		
+	}
+	li{
+		list-style: none;
+		text-align: center;
+	}
+	#showhidden{
+		width: 100%;
+		height: 20px;
+		background: #3cf;
+	}
+	</style>
+</head>
+<body>
+	<div id="mainContent">
+		<div id="myContent">
+		<ul>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>
+			<li>iteml-item-l-iteml</li>			
+		</ul>
+	</div>
+	<div id="showhidden" style="display: none;">
+		<p>加载中，请稍后......</p>
+	</div>
+	<script type="text/javascript">
+		var obj=document.getElementById("mainContent");
+		obj.onscroll=function(){
+			//
+			var scrollH=obj.scrollHeight;//整个内容的高度，包括内容区域的高度，加上被“卷”起来的部分
+			var scrollT=obj.scrollTop;//被卷起来的高度
+			var clientH=obj.clientHeight;//内容区域的高度
+			//console.log("scrollHeight: "+scrollH+"-----scrollTop"+scrollT+"-----clientHeight"+clientH );
+			//scrollHeight=scrollTop+clientHeight
+			if(scrollH==scrollT+clientH){
+				//alert("已经到了底部")；
+				var sh=document.getElementById("showhidden");
+				sh.style.display="block";
+				window.setTimeout("frush()",1000);
+			}
+		}
+
+		//加载新的下拉列表
+		function frush(){
+			var newdiv=document.createElement("div");
+			var newul=document.createElement("ul");
+			//循环添加内容
+			for(var i=0;i<16;i++){
+				var newli=document.createElement("li");
+				newli.innerHTML="scro1-scro-1-scrol";
+				newul.appendChild(newli);
+			}
+			newdiv.appendChild(newul);
+			var sh=document.getElementById("showhidden");
+			obj.insertBefore(newdiv,sh);//
+		}
+	</script>
+</body>
+</html>

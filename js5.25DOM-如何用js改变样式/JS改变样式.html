@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="mydiv" style="width:400px;height: 400px;background-color:pink;" onclick="changeBgColor()">
+		
+	</div>
+	<script type="text/javascript">
+			function changeBgColor(){
+				var mydiv=document.getElementById("mydiv");
+				mydiv.style.backgroundColor="blue";
+			}
+
+	</script>
+	<!--  一键换肤 -->
+	<div id="pic" style="background:url(fruit1.jpg);width: 100px;height:100px;background-size: no-cover;">
+
+	</div>
+	<p style="color: red">测试文字</p>
+	<input type="button" value="一键换肤" onclick="changePic()" />
+	<script type="text/javascript">
+		function changePic(){
+			var mydiv=document.getElementById("pic");
+			mydiv.style.background="url(fruit2.jpg)";
+			//alert(document.getElementsByTagName("p")[0].style.color );
+		}
+	</script>
+</body>
+</html>

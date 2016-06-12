@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>证则-小数点</title>
+</head>
+<body>
+	.:在js证则里面，小数点值任意字符
+	\.:字符点
+
+	\b:独立的部分，包括开始，结束和空格  说白了，就是界限
+	\B:非独立的部分
+	<script type="text/javascript">
+		var str="a.c";
+		var reg=/\.+/;
+		console.log( reg.test(str) );
+
+		var str="abc def";
+		var reg=/\baba\b/;
+		console.log( reg.test(str) );
+	</script>
+</body>
+</html>

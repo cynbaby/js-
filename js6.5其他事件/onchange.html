@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>onchange</title>
+</head>
+<body>
+	onchange:内容改变的时候触发事件，并不是时时监听的，而是失焦的时候才监听,一般不用与input标签，
+	一般用于select(下拉列表)标签
+	<input type="text" id="inp" />
+	<select id="sel">
+		<option value="hn">湖南</option>
+		<option value="ah">安徽</option>
+		<option value="hb">湖北</option>
+		<option value="nmg">内蒙古</option>
+		<option value="bh">北海</option>
+	</select>
+
+	<script type="text/javascript">
+		var inp=document.getElementById("inp");
+		var sel=document.getElementById("sel");
+
+		inp.onchange=function(){
+			alert("内容改变");
+		}
+
+		sel.onchange=function(){
+			// value区option  value属性值
+			// console.log(this.text);
+
+			//获取到下拉列表的值
+			var index=this.selectedIndex;
+			//console.log(index);
+			console.log(this.options[index].value);
+			console.log(this.options[index].text);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标点击事件</title>
+</head>
+<body>
+	直接在标签上面绑定事件（添加事件）  要在click前加on。
+	<input type="button" value="点我" onclick="show()" />
+
+	<script type="text/javascript">
+		function show(){
+			alert("bbbbbjkg");
+		}
+
+	</script>
+
+	<input type="button" value="双击点我" />
+	<script type="text/javascript">
+		var btn=document.getElementsByTagName("input")[1];
+		/*btn.ondblclick=function(){
+			alert("双击了我");
+		}*/
+
+		btn.addEventListener("dblclick",function(){
+			alert("又双击了我");
+		})
+
+	</script>
+</body>
+</html>

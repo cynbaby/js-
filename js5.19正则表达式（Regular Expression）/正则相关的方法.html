@@ -5,18 +5,20 @@
 	<title>正则相关的方法</title>
 </head>
 <body>
+	<pre>
 	test:
 	\n  :转译字符，表示换行
 	\t  :表示空格
 	\r  :制表符
 
 	在正则里面也有转译字符
-	\s:空格
+	\s:空格  [\n\t\r]
 	\S:非空格
-	\d:数字
-	\D:非数字
-	\w:字符（大小写字母，数字，下划线）
-	\W:非字符
+	\d:数字  [0-9]
+	\D:非数字  [^0-9]
+	\w:字符（大小写字母，数字，下划线）  [a-z0-9_A-Z]
+	\W:非字符  [^a-z0-9_A-Z]
+	</pre>
 	<script type="text/javascript">
 		var str="abcde";
 		//

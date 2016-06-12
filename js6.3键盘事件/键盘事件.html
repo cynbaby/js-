@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>键盘事件</title>
+</head>
+
+
+<body>
+	
+	<pre>键盘事件：主要来兼容火狐浏览器
+
+keydown:某个键盘按键被按下。先触发的事件，再输入的值。
+keypress:某个键盘按键被按下并松开（官方），
+但是事实上检验后，是，一直按下也会触发这个事件（除opera外）。
+也是先触发事件。再显示内容的。
+keydown与keypress的区别是：keydown必须产生一个字符才能触发事件。也就是说，keydown和keypress的区别在于，是否能监听用户按下ctrl,shift等功能键。keypress是监听不到这些功能键的，（Firefox除外），而keydown可以。
+keyup:某个键盘按键被松开，先显示内容再触发。</pre>
+	
+	<input type="text" id="txt" />
+
+	<script type="text/javascript">
+		var txt=document.getElementById("txt");
+		// txt.onkeydown=function(){
+		// 	alert("keydown事件触发");
+
+		// }
+		// txt.onkeypress=function(){
+		// 	//alert("keypress事件触发");
+		// 	console.log("aaa");
+		// }
+		txt.onkeyup=function(){
+			//alert("keyup事件触发");   //先显示内容再触发。
+			//console.log("aaa");
+			alert(txt.value);
+		}
+	</script>
+</body>
+</html>

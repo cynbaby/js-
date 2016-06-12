@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为了解决DOMReady问题</title>
+	<script type="text/javascript">
+		window.onload=function(){  //这个方法的执行，需要当外部资源全都加载完毕后，才会执行，那很有可能的是，外部资源加载特别费时，那么就会导致这整个网页解析不顺畅，这就是这个方法的弊端。
+			alert("DOM树以及外部资源全部加载完毕");
+		}
+
+		//此方法只限于现代浏览器，意味着一些以前的IE低版本执行不了这个方法，所以也有弊端。
+		function DOMContentLoaded(){
+			alert("DOM树加载完毕");
+		}
+		//                           事件名         事件触发的回调函数  事件是否在捕获事件冒泡阶段
+		document.addEventListener("DOMContentLoaded",DOMContentLoaded,false);
+
+
+		//为了更好的优化关于浏览器版本问题以及加载耗时问题，所以就产生了一种更好的解决方案，即已经写好的domready.js文件，当需要引用的时候，即可声明一个函数myReady调用domready.js即可。实例可以参照text.html测试文件。
+	</script>
+
+</head>
+<body>
+	<img src="http://c.hiphotos.baidu.com/zhidao/pic/item/37d3d539b6003af3a02b2944372ac65c1038b605.jpg"  />
+</body>
+</html>

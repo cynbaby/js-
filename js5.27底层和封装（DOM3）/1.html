@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	window.setTimeout(function(){
+		document.getElementsByTagName("p")[1].style.color="red";
+	},30);//假如ＤＯＭ树的加载时间超过了30毫秒。
+	window.onload=function(){ //这句代码的意思是，等待网页加载完毕的时候再执行,但是并没有完美解决DOMReady
+		document.getElementsByTagName("p")[0].style.color="yellow";
+	}
+	</script>
+</head>
+<body>
+	<p>文字变红</p>
+	<p>文字2</p>
+	
+</body>
+</html>

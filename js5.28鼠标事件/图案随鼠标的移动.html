@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图案随鼠标的移动</title>
+	<style type="text/css">
+	#pic{
+		width: 133px;
+		height: 100px;
+		border: 1px solid red;
+		background: url(fruit1.jpg);
+	}
+	</style>
+</head>
+<body id="mybody">
+	<div id="pic"></div>
+	<script type="text/javascript">
+		var pic=document.getElementById("pic");
+		var mybody=document.getElementById("mybody");
+		onmousemove=function(event){
+			var event=event?event:window.event; 
+				pic.style.cssText="background:src(fruit1.jpg);position:absolute;top:"+(event.screenY+100%)+"px;left:"+event.screenX+"px;";
+			
+		}
+	</script>
+</body>
+</html>

@@ -19,16 +19,34 @@
 	<textarea id="late"></textarea>
 
 	<script type="text/javascript">
-		function filter(){
-			//
+		//下面是对敏感字的替换
+		/*function filter(){
+			//1.获取文本域里面的值
 			
 			var str=document.getElementById("first").value;
 			//alert(str);
-			//
-			//
-			var reg=/他妈|人妖|你他妈/g;
-			document.getElementById("late").value=str.replace(reg,"**");
+			//过滤，定义证则
+			//或者，用|    逻辑运算符里面  ||
+			var reg=/他妈|人妖|你他妈|谁/g;
+			//把过滤后的文本放到下面那个textarea里面去
+			document.write( str.replace(reg,function(ss){
+				var result="";
+				for (var i = 0; i < ss.length; i++) {
+						return+="*";
+						}
+						return result;
+			}) );
 		}
+		*/
+	
+		//下面是对html中<h>标签的去除默认样式
+		function filter(){
+			var str=document.getElementById("first").value;
+			//var reg=/<[\w]+>/g;  //这个运行出来是错误的，这样的运行会导致<h1>标签中的后面的结束标签</h1>没有被替换
+			var reg=/<[^>]+>/g;  //这句正则代码的意思是，在全局中寻找<以及不是>和是>的东西，然后替换成空
+			document.getElementById("late").value=str.replace(reg,"");
+		}
+		
 	</script>
 </body>
 </html>

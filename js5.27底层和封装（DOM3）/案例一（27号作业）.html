@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>案例一（27号作业）domReady与onload的时间戳比较</title>
+	<script type="text/javascript" src="domready.js"></script>
+</head>
+<body>
+	<div id="msg">
+		<div>
+			<img src="http://pic4.nipic.com/20090812/2990649_223233008_2.jpg" alt="图片1" />
+			<img src="http://imgsrc.baidu.com/forum/pic/item/1e77ef44ebf81a4c2134ba37d72a6059242da68a.jpg"  alt="图片2">
+			<img src="http://img2.duitang.com/uploads/item/201212/02/20121202181007_E5SEi.jpeg" alt="图片3"/>
+			<img src="http://ol.15w.com/uploads/allimg/121207/7-12120GQS6.jpg" alt="图片4"/>
+		</div>
+
+		<script type="text/javascript">
+			var d=document;
+			var msg=d.getElementById("msg");
+			var time1=null;
+			var time2=null;
+			myReady(function(){
+				msg.innerHTML+="DOM已经加载完毕<br />";
+				time1=new Date().getTime();  //获取时间戳，从1970 1 1 0 0 0开始
+				msg.innerHTML+="时间戳: "+time1+"<br />";
+			})
+
+			window.onload=function(){
+				msg.innerHTML+="onload已经加载完毕<br />";
+				time2=new Date().getTime();  //获取时间戳，从1970 1 1 0 0 0开始
+				msg.innerHTML+="时间戳: "+time2+"<br />";
+				msg.innerHTML+="domReady比onload快: "+(time2-time1)+"ms<br />";
+			}
+		</script>
+	</div>
+</body>
+</html>

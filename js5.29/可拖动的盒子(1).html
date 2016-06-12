@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可拖动层修改后的，意为不会移出界面范围</title>
+	<style type="text/css">
+		body { -moz-user-select: none; }/*用来兼容ff下让鼠标不能选中文字*/
+		#box{
+			position: absolute;
+			left: 300px;
+			top: 200px;
+			font-size:12px;
+			background-color: silver;
+			box-shadow: 2px 2px 4px black;
+			-webkit-box-shadow: 2px 2px 4px black;
+			-ms-box-shadow: 2px 2px 4px black;
+			-moz-box-shadow: 2px 2px 4px black;
+		}
+		#content{
+			border:3px solid #2D7D9A;
+		}
+
+		#top{
+			width:425px;
+			line-height: 25px;
+			padding-left: 5px;
+			background:#BDCEEF;
+			border-bottom:1px solid #A5B5D6;
+			cursor:move;
+		}
+		#close{
+			color:red;
+			font-size: 20px;
+			font-weight: bold;
+			position: absolute;
+			right: 8px;
+			top:2px;
+			width: 25px;
+			text-align: center;
+			cursor:pointer;
+		}
+		#bottom{
+			width: 420px;
+			height: 250px;
+			padding: 10px 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="content">
+			<div id="top">
+				可拖拽
+				<span id="close">X</span>
+			</div>
+			<div id="bottom">
+				内容…………
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var close=document.getElementById('close');
+		var otop=document.getElementById("top");
+		var obox=document.getElementById("box");
+		close.onclick=function(){
+			obox.style.cssText="display:none;";
+		}
+		
+
+		var params={
+			left:0,
+			top:0,
+			currentX:0,
+			currentY:0,
+			clientH:document.documentElement.clientHeight,
+			clientW:document.documentElement.clientWidth,
+			flag:false
+		}
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+		document.documentElement.onmousedown=function(event){
+			//不让鼠标选中文字
+			if(!event){
+				event=window.event;
+				this.onselectstart=function(){
+					return false;
+				}
+			}
+			this.onselectstart=function(){
+				return false;
+			}
+		}
+		function starDrag(box,top){
+			//获取默认状态box默认的top、left值
+			params.left=getStyle(box,"left");
+			params.top=getStyle(box,"top");
+			top.onmousedown=function(event){//鼠标按下
+				params.flag=true;
+				//得到当前鼠标的坐标
+				event=event||window.event;
+				params.currentX=event.clientX;
+				params.currentY=event.clientY;
+			}
+			document.onmousemove=function(event){//鼠标移动
+				event=event||window.event;
+				if(params.flag){
+					//用移动后鼠标的坐标，减去之前鼠标的值，得到移动的差值
+					disleft=event.clientX-params.currentX;
+					distop=event.clientY-params.currentY;
+					box.style.cssText="left: "+(parseInt(params.left)+disleft)+"px;top: "+(parseInt(params.top)+distop)+"px;";
+					//用来解决盒子碰到边缘后还能继续拖动
+					if(parseInt(getStyle(box,"left"))<=0){
+						// params.flag=false;
+						box.style.cssText="left: 1px;top: "+(parseInt(params.top)+distop)+"px;";
+						if(parseInt(getStyle(box,"top"))<=0){
+							box.style.cssText="left: 1px;top: 1px;";
+						}
+					}else if(parseInt(getStyle(box,"top"))<=0){
+						// params.flag=false;
+						box.style.cssText="left: "+(parseInt(params.left)+disleft)+"px;top: 1px;";
+						if(parseInt(getStyle(box,"left"))<=0){
+							box.style.cssText="left: 1px;top: 1px;";
+						}
+					}
+					if(document.documentElement.clientHeight!=params.clientH){
+						box.style.cssText="right: 1px;left:auto;top: "+(parseInt(params.top)+distop)+"px;";
+						if(document.documentElement.clientWidth!=params.clientW){
+							box.style.cssText="right: 1px;left:auto;top:auto;bottom:1px;";
+						}else if(parseInt(getStyle(box,"top"))<=0){
+							box.style.cssText="right: 1px;left:auto;top:1px;";
+						}
+					}else if(document.documentElement.clientWidth!=params.clientW){
+						box.style.cssText="left: "+(parseInt(params.left)+disleft)+"px;top: auto;bottom:1px;";
+						if(document.documentElement.clientHeight!=params.clientH){
+							box.style.cssText="right: 1px;left:auto;top:auto;bottom:1px;";
+						}else if(parseInt(getStyle(box,"left"))<=0){
+							box.style.cssText="left:1px;top: auto;bottom:1px;";
+						}
+					}
+					//console.log(document.documentElement.clientHeight+"-----"+document.documentElement.clientWidth);
+				}
+			}
+			document.onmouseup=function(event){//松开鼠标
+				event=event||window.event;
+				params.flag=false;
+				params.left=getStyle(box,"left");
+				params.top=getStyle(box,"top");
+			}
+		}
+
+		starDrag(obox,otop);
+	</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			font-size:12px;
+			font-family:"微软雅黑";
+		}
+		
+		table{
+			border:1px solid #999;
+			border-collapse:collapse;/*修正单元格之间的边框为可合并*/
+			width:400px;
+		}
+		
+		table tr{
+			line-height:24px;
+		}
+		
+		table tbody th{
+			background:#36F;
+			width:50%;
+		}
+		
+		table td{
+			text-align:center;
+		}
+		
+		a{
+			display:inline-block;
+			padding:8px;
+			background:#3C6;
+			text-decoration:none;
+			font-size:18px；
+			font-weight:bold;
+			color:#FC3;
+			font-family:"隶书";
+			margin-left:10px;
+		}
+		
+		a:hover{
+			background:#666;
+		}
+		
+		#tishiInfo{
+			border:1px solid #699;
+			border-radius:3px;
+			width:200px;
+			height:30px;
+			line-height:30px;
+			font-size:14px;
+			background:#C1E3D3 url(images/tishi.png) no-repeat left center;
+			color:#fff;
+			padding-left:30px;
+			position:absolute;
+			top:200px;
+			left:600px;
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<table border="1px" cellpadding="0px" cellspacing="0px" id="mytable" align="center" width="600px">
+    	<thead>
+        	<tr>
+            	<th colspan="2">学生信息表</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<th>学号</th>
+                <th>姓名</th>
+            </tr>
+            <tr>
+            	<td>08301440110</td>
+                <td>张三</td>
+            </tr>
+        	<tr>
+            	<td>08301440111</td>
+                <td>李四</td>
+            </tr>
+            <tr>
+            	<td>08301440112</td>
+                <td>王五</td>
+            </tr>
+            <tr>
+            	<td>08301440113</td>
+                <td>赵六</td>
+            </tr>
+            <tr>
+            	<td>08301440114</td>
+                <td>钱七</td>
+            </tr>
+            <tr>
+            	<td>08301440115</td>
+                <td>王八</td>
+            </tr>
+             <tr>
+            	<td>08301440112</td>
+                <td>王五</td>
+            </tr>
+            <tr>
+            	<td>08301440113</td>
+                <td>赵六</td>
+            </tr>
+            <tr>
+            	<td>08301440114</td>
+                <td>钱七</td>
+            </tr>
+            <tr>
+            	<td>08301440115</td>
+                <td>王八</td>
+            </tr>
+        </tbody>
+    </table>
+    <br /> <br />
+    <center><a href="javascript:delInfo()">删除光标所在行</a><a href="javascript:addInfo()">添加一行</a></center>
+    <p id="tishiInfo">信息修改成功...</p>
+
+    <script type="text/javascript">
+    	window.onload=function(){
+    		showInfo();
+    	};
+
+        var delobj; //定义用来存放要删除的tr的对象
+
+        function setColor(){
+            //找到表格的内容区所有的奇数行：even表示偶数  ： odd表示奇数
+           
+            //改变背景颜色    偶数行是白色     奇数行是蓝色
+            var tbodyTrs=document.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+            for(var i=1;i<tbodyTrs.length;i++){
+                //清除所有的背景颜色
+                tbodyTrs[i].style.cssText="background-color:none";
+                if(i%2==0){
+                    //奇数
+                    tbodyTrs[i].style.cssText="background:#39F";
+                }
+            }
+            //$("tbody tr").unbind();  //取消所有的绑定
+
+            for(var i=1;i<tbodyTrs.length;i++){
+                //用于记录索引
+                tbodyTrs[i].index=i;
+                //每一个tr绑定mouseover事件
+                tbodyTrs[i].addEventListener("mouseover",function(){
+                    this.style.cssText="background:#6FF";
+                });
+                tbodyTrs[i].addEventListener("mouseout",function(){
+                    //alert(this.index);
+                    if(this.index%2==0){
+                        this.style.cssText="background:#39F";
+                    }else{
+                        this.style.cssText="background:#fff";
+                    }
+                });
+            }
+        }
+
+    	function showInfo(){
+            setColor();
+
+            var tds=document.getElementsByTagName("td");
+            //获得实际的参数
+            console.log(arguments.length);
+            if(arguments.length==1){
+                tds[tds.length-1].addEventListener("click",tdclick);
+                tds[tds.length-2].addEventListener("click",tdclick);
+            }else{
+                for(var i=0;i<tds.length;i++){
+                    tds[i].removeEventListener("click",tdclick);
+                    tds[i].addEventListener("click",tdclick);
+
+                }
+            }
+
+    	function tdclick(){
+    		//alert("a");
+    		//点击td，创建一个input标签
+            delobj=this.parentNode;
+
+            //点击事件，用于创建标签
+            
+    		var inputobj=document.createElement("input");
+    		inputobj.type="text";
+    		inputobj.style.ceeText="border:0px;font-size:12px;"
+            //获得当前鼠标点击的标签
+    		var tdobj=this;
+
+            //设置文本框的背景色
+            //inputboj.css("background",tdobj.css("background"));
+            //将td中的内容放到文本框中
+    		inputobj.value=tdobj.innerHTML;
+    		//把td里面的值清空
+    		var text=tdobj.innerHTML;//保存原来的值，用户放弃修改时用
+    		tdobj.innerHTML="";
+            //将文本框插入到td中
+    		tdobj.appendChild(inputobj)
+    		inputobj.select();//选中文本框中的内容
+
+    		//删除td的点击事件
+    		tdobj.removeEventListener("click",tdclick);
+
+    		//添加键盘事件
+            inputobj.onkeyup=function(event){
+                var e=event?event:window.event;
+                var keycode=e.keyCode;
+                if(keycode==13){
+                    //获取当前文本框中的内容
+                    var inputval=this.value;
+                    //将td的内容修改为文本框中的内容
+                    tdobj.innerHTML=inputval;
+                }else if(keycode==27){
+                    tdobj.innerHTML=text;
+                }
+                tdobj.removeEventListener("click",tdclick);
+                tdobj.addEventListener("click",tdclick);
+            }
+    		//添加失去焦点事件
+    		inputobj.onblur=function(){
+    			tdobj.innerHTML=text;
+    			tdobj.removeEventListener("click",tdclick);
+    			tdobj.addEventListener("click",tdclick);
+    		}
+    	}
+    }
+
+    function delInfo(){
+        var result=confirm("你确定要删除这个数据么");
+        if(result){
+            //做删除操作
+            //兼容IE
+            if(window.ActiveXobject){
+                delobj.parentNode.removeChild(delobj);
+            }else{
+                delobj.remove();
+            }
+
+            //BUG产生的原因：1，在设置背景颜色的时候，没有先删除原先的背景颜色，再去添加
+            //2，你绑定了多次事件
+            //showInfo();
+            setColor();
+        }
+    }
+
+    function addInfo(){
+        //添加一个tr,插入到table里面去
+        //创建td，创建tr,把td插入到tr里面，再插入table里面
+        var tbody=document.getElementsByTagName("tbody")[0];
+        var trInfo=document.createElement("tr");
+        var tdInfo=document.createElement("td");
+        //设置
+        tdInfo.innerHTML="0753534";
+
+        trInfo.appendChild(tdInfo);
+        var tdInfo2=document.createElement("td");
+        //设置
+        tdInfo2.innerHTML="王久";
+        trInfo.appendChild(tdInfo2);
+
+        tbody.appendChild(trInfo);
+
+        //我们想要的是，我们添加的最后一行去绑定事件就可以了
+        showInfo(1);
+    }
+
+    </script>
+</body>
+</html>

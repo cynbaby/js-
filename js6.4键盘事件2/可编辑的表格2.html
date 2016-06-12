@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			font-size:12px;
+			font-family:"微软雅黑";
+		}
+		
+		table{
+			border:1px solid #999;
+			border-collapse:collapse;/*修正单元格之间的边框为可合并*/
+			width:400px;
+		}
+		
+		table tr{
+			line-height:24px;
+		}
+		
+		table tbody th{
+			background:#36F;
+			width:50%;
+		}
+		
+		table td{
+			text-align:center;
+		}
+		
+		a{
+			display:inline-block;
+			padding:8px;
+			background:#3C6;
+			text-decoration:none;
+			font-size:18px；
+			font-weight:bold;
+			color:#FC3;
+			font-family:"隶书";
+			margin-left:10px;
+		}
+		
+		a:hover{
+			background:#666;
+		}
+		
+		#tishiInfo{
+			border:1px solid #699;
+			border-radius:3px;
+			width:200px;
+			height:30px;
+			line-height:30px;
+			font-size:14px;
+			background:#C1E3D3 url(images/tishi.png) no-repeat left center;
+			color:#fff;
+			padding-left:30px;
+			position:absolute;
+			top:200px;
+			left:600px;
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<table border="1px" cellpadding="0px" cellspacing="0px" id="mytable" align="center" width="600px">
+    	<thead>
+        	<tr>
+            	<th colspan="2">学生信息表</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<th>学号</th>
+                <th>姓名</th>
+            </tr>
+            <tr>
+            	<td>08301440110</td>
+                <td>张三</td>
+            </tr>
+        	<tr>
+            	<td>08301440111</td>
+                <td>李四</td>
+            </tr>
+            <tr>
+            	<td>08301440112</td>
+                <td>王五</td>
+            </tr>
+            <tr>
+            	<td>08301440113</td>
+                <td>赵六</td>
+            </tr>
+            <tr>
+            	<td>08301440114</td>
+                <td>钱七</td>
+            </tr>
+            <tr>
+            	<td>08301440115</td>
+                <td>王八</td>
+            </tr>
+             <tr>
+            	<td>08301440112</td>
+                <td>王五</td>
+            </tr>
+            <tr>
+            	<td>08301440113</td>
+                <td>赵六</td>
+            </tr>
+            <tr>
+            	<td>08301440114</td>
+                <td>钱七</td>
+            </tr>
+            <tr>
+            	<td>08301440115</td>
+                <td>王八</td>
+            </tr>
+        </tbody>
+    </table>
+    <br /> <br />
+    <center><a href="javascript:delInfo()">删除光标所在行</a><a href="javascript:addInfo()">添加一行</a></center>
+    <p id="tishiInfo">信息修改成功...</p>
+    <script type="text/javascript">
+    	window.onload=function(){
+    		showInfo();
+    	}
+    	function showInfo(){
+    		//改变背景颜色  偶数行是白色 奇数行是蓝色
+    		var tbodyTrs=document.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+    		for(var i=1;i<tbodyTrs.length;i++){
+    			if(i%2==0){
+    				//奇数
+    				tbodyTrs[i].style.cssText="background:#319CFF";
+    			}
+    		}
+    		//绑定事件，鼠标移入移出事件
+    		for(var i=1;i<tbodyTrs.length;i++){
+    			tbodyTrs[i].index=i; //不这样的话永远要等for循环结束才得到i的值，都是11
+    			//每一个tr绑定mouseover事件
+    			tbodyTrs[i].addEventListener("mouseover",function(){
+    				this.style.cssText="background:#63FFFF";
+    			});
+    			tbodyTrs[i].addEventListener("mouseout", function(){
+    				if(this.index%2==0){
+    					this.style.cssText="background:#319CFF";
+    				}else{
+    					this.style.cssText="background:#fff";
+    				}
+    			});
+    		}
+
+    		var tds=document.getElementsByTagName("td");
+    		for(var i=0;i<tds.length;i++){
+    			tds[i].addEventListener("click",tdclick);
+    		}
+    		function tdclick(){
+    			//alert("a");
+    			//点击td,创建一个input标签
+    			var inputObj=document.createElement("input");
+    			inputObj.type="text";
+    			inputObj.style.cssText="border:0px;font-size:12px;"
+
+    			//自定义当前能被点击的td
+    			var tdObj=this;
+    			//获取到td里面的值，赋给input
+    			inputObj.value=tdObj.innerHTML;
+    			//把td里面的值清空
+    			var txt=tdObj.innerHTML;
+    			tdObj.innerHTML="";
+
+    			tdObj.appendChild(inputObj);
+    			//选中input标签里面的值
+    			inputObj.select();
+
+    			//删除td的点击事件
+    			//不然点击两次出现的是：<input type="text" style="border: 0px; font-size: 12px;">
+    			tdObj.removeEventListener("click", tdclick);
+
+    			//添加键盘事件
+    			inputObj.onkeydown=function(event){
+    				var e=event?event:window.event;
+    				var keycode=e.keyCode;
+    				if(keycode==13){//回车
+    					//获取input标签里面的值，赋给td
+    					var inputVal=this.value;
+    					tdObj.innerHTML=inputVal;
+    				}else if(keycode==27){
+    					tdObj.innerHTML=txt;
+    				}
+    				tdObj.addEventListener("click",tdclick);
+    			}
+
+    			//区分IE浏览器和其他浏览器
+    			if(window.ActiveXObject){
+    				alert("aaa");
+    			}
+    			//添加失去焦点事件
+    			inputObj.onblur=function(){
+    				tdObj.innerHTML=txt;
+    				//tdObj.removeEventListener("click", tdclick);
+    				tdObj.addEventListener("click",tdclick);
+    			}
+    		}
+    	}
+    </script>
+</body>
+</html>

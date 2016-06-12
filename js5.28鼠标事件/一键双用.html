@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="点我" onclick="aa()" ondblclick="bb()" />
+
+	<script type="text/javascript">
+		var isdb;
+
+		function aa(){
+			isdb=true;  //这里的true和false是可以相互调换
+			window.setTimeout(cc,500);
+			function cc(){
+				if(isdb!=true){
+					return;
+				}
+				alert("这是单击");
+			}
+		}
+
+		function bb(){
+			isdb=false;
+			alert("这是双击");
+		}
+	</script>
+</body>
+</html>

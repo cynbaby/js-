@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义右键菜单</title>
+	<style type="text/css">
+		#mydiv{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<p id="myp">点我，弹出自定义右键菜单</p>
+	<div id="mydiv">
+		<li><a href="">aaa</a></li>
+		<li><a href="">bbb</a></li>
+		<li><a href="">ccc</a></li>
+	</div>
+
+	<script type="text/javascript">
+		var myp=document.getElementById("myp");
+		var mydiv=document.getElementById("mydiv");
+		myp.onmousedown=function(event){
+			var event=event?event:window.event;  //兼容性  兼容IE
+			if(event.button==2){  //说明是右键
+				document.oncontextmenu=function(aevent){   //阻止默认行为
+					if(window.event){
+						aevent=window.event;
+						aevent.returnValue=false;
+						aevent.preventDefault();  //现代浏览器，阻止事件的默认行为
+					}else{
+						aevent.preventDefault();
+					}
+				};
+				mydiv.style.cssText="display:block;position:absolute;top:"+(event.clientY+5)+"px;left:"+event.clientX+"px;";
+			}
+		}
+		mydiv.onmouseout=function(){
+			//直接写CSS代码
+			setTimeout(function(){mydiv.style.cssText="display:none;"},400);  //添加了个时延
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>zuoye1</title>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px auto;
+			font-family:"微软雅黑";
+			font-size: 16px;
+			}
+		.content{
+			width: 90%;
+			height: 900px;
+		}
+		.top{
+			width: 100%;
+			height: 50px;
+		}
+		.top input{
+			width: 20%;
+			height: 100%;
+			float: left;
+		}
+		#pic{
+			width: 100%;
+			height: 850px;
+		}
+	</style>
+</head>
+<body>
+	<div  class="content">
+		<div class="top">
+			<input type="button" name="a" id="a" value="疯狂动物城-狮子" onclick="Pic1()"/>
+			<input type="button" name="a" id="b" value="疯狂动物城-树懒" onclick="Pic2()"/>
+			<input type="button" name="a" id="c" value="疯狂动物城-兔子" onclick="Pic3()"/>
+			<input type="button" name="a" id="d" value="疯狂动物城-狐狸" onclick="Pic4()"/>
+			<input type="button" name="a" id="e" value="疯狂动物城-仓鼠" onclick="Pic5()"/>
+		</div>
+		<div id="pic" style="background:url(1.jpg);background-size: no-cover;">
+		</div>
+	</div>
+	<script type="text/javascript">
+		function Pic1(a){
+			var pic1=document.getElementById(a);
+			pic.style.background="url(1.jpg)";
+		}
+
+		function Pic2(a){
+			var pic2=document.getElementById(a);
+			pic.style.background="url(2.jpg)";
+		}
+
+		function Pic3(a){
+			var pic3=document.getElementById(a);
+			pic.style.background="url(3.jpg)";
+		}
+
+		function Pic4(a){
+			var pic4=document.getElementById(a);
+			pic.style.background="url(4.jpg)";
+		}
+
+		function Pic5(a){
+			var pic5=document.getElementById(a);
+			pic.style.background="url(5.jpg)";
+		}
+	</script>
+</body>
+</html>

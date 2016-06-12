@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px auto;
+			font-family:"微软雅黑";
+			color:#333;
+			}
+		
+
+	</style>
+</head>
+<body>
+	<table border="1">
+			<tr>
+				<td>书名</td>
+				<td>价格</td>
+			</tr>
+			<tr>
+				<td>看得见风景的房间</td>
+				<td>￥30.00</td>
+			</tr>
+			<tr>
+				<td>60个瞬间</td>
+				<td>￥32.00</td>
+			</tr>
+		
+	</table>
+		<input id="myTable" name="bt1" type="button" value="增加一行" onclick="addRow()" />
+		<input id="myTable" name="bt2" type="button" value="删除第二行" onclick="delRow()" />
+		<input id="myTable" name="bt3" type="button" value="修改标题" onclick="updateRow()" />
+		<script type="text/javascript">
+			function addRow(){
+				var table=document.getElementById("myTable");
+				var newRow=table.insertRow(table.rows.length);
+				var cell1=newRow.insertCell(0);
+				cell1.innerHTML="如何不翻船";
+				var cell2=newRow.insertCell(1);
+				cell2.appendChild(document.createTextNode("998"));
+			}
+
+			function delRow(){
+				document.getElementById("myTable").deleteRow(1);
+			}
+
+			function updateRow(){
+				var row1=document.getElementById("myTable").rows[0];
+				//动态修改类名
+				row1.className="title";
+			}
+		</script>
+</body>
+</html>
