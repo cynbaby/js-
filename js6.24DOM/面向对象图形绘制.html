@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>面向对象图形绘制</title>
+
+
+</head>
+
+<body>
+	<canvas id="canvas" width="800px" height="600px">当前浏览器不支持Canvas,请更换浏览器再试试。</canvas>
+
+<script type="text/javascript">
+	//定义一个点的坐标
+	function Point(x,y){
+		this.x=x;
+		this.y=y;
+	}
+
+	//定义一个栈的对象，（p1,p2,长度：勾股定理）
+	function Line(p1,p2){
+		this.p1=p1;
+		this.p2=p2;
+		//利用勾股定理求线长
+		this.length=Math.sqrt(Math.pow(p1.x-p2.x,2)+Math.pow(p1.y-p2.y,2));
+	}
+
+	//定义一个形状对象：由n个点和n条线组成
+	function Shape(){
+		this.points=[];
+		this.lines=[];
+		this.init();
+	}
+	//初始化的操作，还有绘制的操作，获取颜色，获取所有的线和所有的点，周长，面积
+	Shape.prototype={
+		init:function(){//初始化的方法
+			if((typeof this.context)=='undefined'){
+				var canvas=document.getElementById("canvas");
+				this.context=canvas.getContext("2d");
+
+				// canvas.width=800;
+				// canvas.height=400;
+			
+			}
+			
+		},
+		draw:function(){
+			//利用context来完成绘制，看线和点的位置，取出颜色。
+			var ctx=this.context;
+			if(arguments.length>0){
+				ctx.beginPath();
+				//ctx.lineWidth=5;
+				ctx.strokeStyle=this.getColor();
+				ctx.arc(this.points[0].x,this.points[0].y,this.radius,0,2*Math.PI);
+				ctx.fillStyle="#FFA500";
+				ctx.fill();
+				ctx.closePath();
+				ctx.stroke();
+			}else{
+				ctx.strokeStyle=this.getColor();
+				ctx.beginPath();
+				ctx.moveTo(this.points[0].x,this.points[0].y);
+				for(var i=1;i<this.points.length;i++){
+					ctx.lineTo(this.points[i].x,this.points[i].y);
+				}
+				ctx.closePath();
+				ctx.stroke();
+			}
+			
+		},
+		getColor:function(){
+			//输出颜色：（颜色值随机生成， Math。random（）*255）
+			//
+			var cs=[];
+			for(var i=0;i<3;i++){
+				cs[i]=Math.round(Math.random()*255);
+			}
+			return 'rgb('+ cs.join(',')+')';
+		},
+
+		getLines:function(){
+			//判断lines是否为空，如果为空，则要判断points是否为空
+			
+			//如果points不为空，则要根据点来生成线
+			if(this.lines.length>0){
+				return this.lines;
+			}
+			//
+			var lines=[];
+			if(this.points.length<=0){
+				return this.lines;
+			}
+			for(var i=0;i<this.points.length;i++){
+				lines[i]=new Line( this.points[i],(this.points[i+1])?this.points[i+1]:this.points[0]);
+			}
+			this.lines=lines;
+			return lines;
+		},
+		getPoints:function(){
+			return this.points;
+		},
+		getParimeter:function(){
+			//循环this.lines数组，取出每一条line，再取出它的length值相加，
+			var lines=this.getLines();
+			var perim=0;
+			for(var i=0;i<lines.length;i++){
+				perim+=lines[i].length;
+			}
+			return perim;
+		},
+		getArea:function(){
+			
+		}
+	}
+	function Triangle(p1,p2,p3){
+		this.points=[p1,p2,p3];
+		this.getArea=function(){
+			var lines=this.getLines();
+			var preim=this.getParimeter();
+			var p=preim/2;
+			var area=Math.sqrt(p*( p-lines[0].length)*(p-lines[1].length)*(p-lines[2].length) );
+			return area;
+		}
+	}
+
+	//继承
+	Triangle.prototype=new Shape();
+
+	//测试
+	var p1=new Point(400,50);
+	var p2=new Point(200,150);
+	var p3=new Point(600,150);
+
+	var t1=new Triangle(p1,p2,p3);
+	document.write("三角形周长"+t1.getParimeter()+"<br >");
+	document.write("颜色"+t1.getColor()+"<br >");
+	document.write("所有的线"+t1.getLines()+"<br >");
+	document.write("所有的点"+t1.getPoints()+"<br >");
+	console.log("三角形面积:"+t1.getArea());
+	t1.draw();
+	//t1.getArea();
+	
+	//正方形
+	function Zfx(p1,length){
+		this.points=[];
+		this.points[0]=p1;
+		this.points[1]=new Point(p1.x+length,p1.y);
+		this.points[2]=new Point(p1.x+length,p1.y+length);;
+		this.points[3]=new Point(p1.x,p1.y+length);;
+
+		this.getArea=function(){
+			var area=length*length;
+			return area;
+		}
+	}
+	Zfx.prototype=new Shape();
+
+	var p4=new Point(200,150);
+	var sq=new Zfx(p4,400);
+	console.log("正方形面积:"+sq.getArea());
+	sq.draw();
+
+	
+
+	//圆形
+	
+	
+	// function circle(context,color){
+	// 	//var rad="";
+	// 	context.beginPath();
+	// 	context.lineWidth=5;
+	// 	context.strokeStyle=color;
+	// 	context.arc(200,50,40,0,2*Math.PI);
+	// 	context.closePath();
+	// 	context.stroke();
+	// 	this.getArea=function(){
+	// 		var rad=40;
+	// 		var pi=3.14;
+	// 		var area=rad*rad*pi;
+	// 		return area;
+	// 	}
+	// }
+	function Circle(p,rad){
+		this.points=[];
+		this.points[0]=p;
+		this.radius=rad;
+
+		this.getArea=function(){
+			var rad=this.radius;
+			var pi=3.14;
+			var area=rad*rad*pi;
+			return area;
+		}
+	}
+	Circle.prototype=new Shape();
+	var p0=new Point(200,60);
+	var c1=new Circle(p0,50);
+	console.log("圆的面积:"+c1.getArea());
+	console.log(c1.getPoints());
+	c1.draw(1);
+
+
+	//矩形
+	function jux(p1,length){
+		this.points=[];
+		this.points[0]=p1;
+		this.points[1]=new Point(p1.x+length,p1.y);
+		this.points[2]=new Point(p1.x+length,p1.y+length*2);
+		this.points[3]=new Point(p1.x,p1.y+length*2);
+
+		this.getArea=function(){
+			var area=length*length/2;
+			return area;
+		}
+	}
+
+	jux.prototype=new Shape();
+
+	var p1=new Point(500,350);
+	var ju=new jux(p1,100);
+	console.log("矩形面积:"+ju.getArea());
+	ju.draw();
+
+
+	// function Rectangle(a,l,w){
+	// 	var p2=new Point(a.x+l,a.y);
+	// 	var P3=new Point(a.x+l,a.y+w);
+	// 	var p4=new Point(a.x,a.y+w);
+	// 	this.points=[a,p2,p3,p4];
+	// 	this.getArea=function(){
+	// 		return l*w;
+	// 	}
+	// }
+
+
+	// (function(){
+	// 	var s=new Shape();
+	// 	Triangle.prototype=s;
+
+	// 	Rectangle.prototype=s;
+	// })();
+
+	// var r=new Rectangle(a,200,100);
+	// var a=new Point(200,60);
+	
+	// console.log("正方形面积:"+r.getArea());
+	// r.draw();
+	</script>
+</body>
+</html>

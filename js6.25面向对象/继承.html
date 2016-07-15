@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+</head>
+<body>
+	
+
+	<script type="text/javascript">
+		//Person:name,age,   showInfo();
+		//emp  继承自 Person:  salary
+		function Person(name,age){
+			this.name=name;
+			this.age=age;
+			this.salary=salary;
+		}
+		Person.prototype.showInfo=function(name,age){
+			//return this.name+"<br />"+this.age;
+
+			// var arr=new Array(2)
+			// arr[0]="smith";
+			// arr[1]="20";
+			// return arr;
+			
+			document.write(this.name+"<br />"+this.age);
+		}
+
+		Person.prototype.pay=function(name,age,salary){
+			document.write(this.salary);
+		}
+
+		var p=new Person('smith',20,40000);
+		p.showInfo();   //  name...age
+		p.pay();         //  name...age....salary
+
+		
+	</script>
+</body>
+</html>

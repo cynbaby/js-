@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示时间2(完整版)</title>
+
+<script language="javascript" type="text/javascript">
+<!--
+//获得当前时间,刻度为一千分一秒
+var initializationTime=(new Date()).getTime();
+function showLeftTime()
+{
+var now=new Date();
+var years=now.getFullYear();    
+var month=now.getMonth()+1;
+var day=now.getDate();
+var hours=now.getHours();
+var minutes=now.getMinutes();
+var seconds=now.getSeconds();
+document.all.show.innerHTML=""+years+"年"+month+"月"+day+"日 "+hours+":"+minutes+":"+seconds+"";
+//一秒刷新一次显示时间
+var timeID=setTimeout(showLeftTime,1000);
+}
+//-->
+</script>
+</head>
+
+
+<body onload="showLeftTime()">
+<label id="show">显示时间的位置</label>
+
+</body>
+</html>

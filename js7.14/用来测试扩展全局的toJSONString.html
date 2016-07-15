@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用来测试扩展全局的toJSONString</title>
+	<script type="text/javascript" src="yclib.js"></script>
+</head>
+<body>
+	<script type="text/javascript" >
+		var obj3={"name":"zy","age":20};
+		alert(obj3.toJSONString());
+
+		var arr=new Array();
+		arr[0]={"name":"zy1","age":20};
+		arr[1]={"name":"zy2","age":20};
+		alert(arr.toJSONString());
+
+	</script>
+</body>
+</html>

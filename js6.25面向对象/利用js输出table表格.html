@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用js输出table表格</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function YcTable(data){
+			this.data=data;
+		}
+		YcTable.prototype={
+			showTable:function(){
+				
+					var mytable=document.createElement("table");
+					mytable.setAttribute("border","1");
+					mytable.setAttribute("width","300px");
+					mytable.setAttribute("cellSpacing","0");
+					//mytable.setAttribute("height","100px");
+					var line=this.getTotal();//相当于所有的行
+					var list=this.getColumnCount();//相当于所有的列
+					for(var i=0;i<line;i++){
+						var tr=document.createElement("tr");
+						for(j in this.data[i]){
+							var td=document.createElement("td");
+							td.innerHTML=this.data[i][j];
+							tr.appendChild(td);
+						}
+						mytable.appendChild(tr);
+					}
+					document.body.appendChild(mytable);
+			},
+			getTotal:function(){
+				return this.data.length;
+			},
+			getColumnCount:function(){
+				var length=0;
+				for(index in this.data[0]){
+					length++;
+				}
+				return length;
+			},
+			getColumnNames:function(){
+				var Names=[];
+				for(index in this.data[0]){
+					Names.push(index);
+				}
+				return Names;
+			},
+			getValue:function(){
+				var Values=[];
+				for(var i=0;i<this.data.length;i++){
+					for(index in this.data[i]){
+						Values.push(this.data[i][index]);
+					}
+				}
+				return Values;
+			}
+
+		}
+
+		var data=[ {"name":"zy","age":"20"},   {"name":"smith","age":"20"},{"name":"tom","age":"22"} ];
+
+		var YcTable=new YcTable(data);
+		YcTable.showTable();
+
+	</script>
+</body>
+</html>

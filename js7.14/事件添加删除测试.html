@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件添加删除测试</title>
+	<script type="text/javascript" src="yclib.js"></script>
+</head>
+<body>
+	<p id="show">hello world</p>
+
+	<script type="text/javascript">
+		// yc.addEvent("show","click",function(){  //这个代码是用来检测添加事件的
+		// 	alert("Hello");
+		// });
+
+    	var show=function(){   //这行代码是用来检测删除事件
+    	alert("hello");
+    }
+    yc.addEvent( "show","click",show ); //  添加事件时用了另一个函数
+    yc.removeEvent(  "show","click",show );  //删除时用了另一个函数
+	</script>
+</body>
+</html>

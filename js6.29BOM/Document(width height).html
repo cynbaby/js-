@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document(width height)</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// window.innerWidth: => 用于  ie8+, ff,chrome,
+		// document.documentElement.clientWidth || document.body.clientWidth =>  ie4,5,6,7,8
+		var width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+		var height=window.innerHeigth || document.documentElement.clientHeight || document.body.clientHeight;
+		document.write(width+"  "+height);
+	</script>
+</body>
+</html>

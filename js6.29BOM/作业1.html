@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业1</title>
+	<style type="text/css">
+		*{
+			margin:0px auto;
+			padding: 0;
+		}
+		#box{
+			width: 380px;
+			height: 260px;
+			border: solid 1px #005588;
+			margin:5% 20%;
+		}
+		#box input{
+			margin: 10px;
+		}
+		#box table{
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<table>
+			<tr>
+				<td>姓名：</td>
+				<td><input type="text" value=" " /></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>地址：</td>
+				<td><input type="text" value=" " /></td>
+				<td><input type="button" value="选择" onclick="aclick()"></input></td>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript">
+		function aclick(){
+			window.open("跳转页面.html","new window","Width=500,Height=500,screenX=800px,screenY=200px" );
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BOM_案例1</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin: 0 auto;
+		}
+		div{
+			width: 200px;
+			height: 100px;
+			border: 1px solid black;
+			padding: 10px
+		}
+		.div2{
+			position: relative;
+			top: -50px;
+			left: 200px;
+			display: none;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<table id="t1">
+			<tr>
+				<td>姓名:</td>
+				<td><input id="name" type="text" ></td>
+			</tr>
+			<tr>
+				<td>地址:</td>
+				<td><input id="add" type="text"></td>
+			</tr>
+			<tr>
+				<td><input id="choose" type="button" value="选择" onclick="Show()"></td>
+			</tr>
+		</table>
+
+	</div>
+	<div id="div2" class="div2">
+		<table id="t2">
+			<tr>
+				<td>省份:</td>
+				<td><input id="province" type="text" ></td>
+			</tr>
+			<tr>
+				<td>市:</td><td><input id="city" type="text"></td>
+			</tr>
+			<tr>
+				<td><input id="yes" type="button" value="确定" onclick="submit()"></td>
+				<td><input id="no" type="button" value="取消" onclick="none()"></td>
+			</tr>
+		</table>
+
+	</div>
+	
+	<script type="text/javascript">
+		function Show() {
+			document.getElementById('div2').style.display="block";
+		}
+		function none() {
+			document.getElementById('div2').style.display="none";
+		}
+		function submit(){
+			var province=document.getElementById('province').value;
+			var city=document.getElementById('city').value;
+			var address=document.getElementById('add');
+			address.value=province+city;
+			document.getElementById('div2').style.display="none";
+		}
+	</script>
+</body>
+</html>

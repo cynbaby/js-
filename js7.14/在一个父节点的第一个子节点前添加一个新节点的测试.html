@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>在一个父节点的第一个子节点前添加一个新节点的测试</title>
+	<script type="text/javascript" src="yclib.js"></script>
+</head>
+<body>
+	<div id="con">
+		<p id="a">a
+			<span>abc</span>
+			<span>efg</span>
+		</p>
+		<p id="b">b</p>
+		<p id="c">cccc</p>
+	</div>
+
+	<script type="text/javascript">
+		var newnode=document.createElement("p");
+		var txtnode=document.createTextNode("hello");
+		newnode.appendChild( txtnode );
+
+		yc.prependChild(  "con",newnode);
+	</script>
+</body>
+</html>

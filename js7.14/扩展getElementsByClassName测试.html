@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扩展getElementsByClassName测试</title>
+	<script type="text/javascript" src="yclib.js"></script>
+</head>
+<body>
+	<p class="show">helllo</p>
+
+	<div id="div1">
+		<p class=" a  b ">xxxx</p>
+		<p class=" a">aaaa</p>
+		<p class="c  a">zzz</p>
+		<p class=" c  a  d ">yyyy</p>
+
+		<span class="a">ccc</span>
+	</div>
+	<div class="div2">
+		<span class="a">bbbb</span>
+		<a href=" " class="a">ttt</a>
+	</div>
+
+	<script type="text/javascript">
+		var r=yc.getElementsByClassName(  "a","p","div1" );
+		alert(r.length);
+	</script>
+</body>
+</html>

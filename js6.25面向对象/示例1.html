@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>示例1</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+	// Person:name,age,  showInfo();
+	// emp  继承自 Person:  salary,pay();
+		function Person(name,age,salary){
+			this.name=name;
+			this.age=age;
+			this.salary=salary;
+		}
+
+		Person.prototype={
+			showInfo:function(){
+				document.write(this.name+"  "+this.age+"<br />");
+			},
+			pay:function(){
+				document.write(p.showInfo()+this.salary);
+			}
+		}
+	
+		var p=new Person('smith',20,40000);
+		p.showInfo();  //name...age
+		p.pay();   //name...age....salary
+
+	</script>
+</body>
+</html>

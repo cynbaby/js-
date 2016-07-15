@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示时间</title>
+</head>
+<body>
+
+	<div id="box"></div>
+	<script type="text/javascript">
+	// var time=window.setInterval("show()",1000);
+
+	// function show(a){
+		var time=new Date();
+		var p=document.createElement("p");
+		p.innerHTML+=time.getFullYear()+'-';
+		p.innerHTML+=(time.getMonth()+1)+'-';
+		p.innerHTML+=time.getDate()+'-';
+		p.innerHTML+=time.getDay()+'-';
+		//p.innerHTML+=time.getTime()+'-';
+		p.innerHTML+=time.getHours()+'-';
+		p.innerHTML+=time.getMinutes()+'-';
+		p.innerHTML+=time.getMilliseconds()+'-';
+		p.innerHTML+=time.toLocaleTimeString();     
+		var element=document.getElementById("box");
+		element.appendChild(p);
+	
+		
+	</script>
+</body>
+</html>

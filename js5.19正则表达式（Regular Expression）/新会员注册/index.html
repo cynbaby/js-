@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div>
+	<table>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td>会员名：</td>
+			<td><input type="text" onBlur="checkname(this,'pic1','divname')"/></td>
+			<td><img id="pic1" src="images/onFocus.gif" /></td>
+			<td><div id="divname">会员名以字母或文字开头，由3-18的数字，字母，下划线，汉字组成</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td class="register-td">真实姓名：</td>
+			<td><input type="text" name="myname" id="myname" class="register-input" onBlur="checkmyname(this,'pic2','mydivname')" /></td>
+			<td><img id="pic2" src="images/onFocus.gif" /></td>
+			<td><div id="mydivname" class="tishi">请输入您的真实姓名</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" /></td>
+			<td>密码：</td>
+			<td><input id="pwd" type="password" onBlur="checkpwd(this,'pic3','mydivpwd')" /></td>
+			<td><img id="pic3" src="images/onFocus.gif" /></td>
+			<td><div id="mydivpwd">密码由6-16的数字，字母，下划线组成</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img"/></td>
+			<td>重复密码：</td>
+			<td><input type="password" onBlur="checkpwd2(this,'pic4','mydivpwd2','pwd')"/></td>
+			<td><img id="pic4" src="images/onFocus.gif" /></td>
+			<td><div id="mydivpwd2">两次输入的密码必须一致</div></td>
+		</tr>
+		<tr>
+			<td ><img src="images/register-arrow.gif" class="img" /></td>
+			<td>性别：</td>
+			<td>
+				<input type="radio" name="sex" value="boy" checked="yes" />男
+				<input type="radio" name="sex" value="girl"/>女
+			</td>
+			<!-- <td><img src="images/onFocus.gif" /></td> -->
+			<td colspan="2">请选择您的性别</td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td>证件号：</td>
+			<td><input type="text" onBlur="checkid(this,'pic5','mydivid')"/></td>
+			<td><img id="pic5" src="images/onFocus.gif" /></td>
+			<td><div id="mydivid">请输入您的有效身份证号</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td>E-mail：</td>
+			<td><input type="text" onBlur="checkemail(this,'pic6','mydivemail')"/></td>
+			<td><img id="pic6" src="images/onFocus.gif" /></td>
+			<td><div id="mydivemail">请填写常用电子邮件</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td>联系方式：</td>
+			<td><input type="text" onBlur="checktel(this,'pic7','mydivtel')"/></td>
+			<td><img id="pic7" src="images/onFocus.gif" /></td>
+			<td><div id="mydivtel">请输入您的常用联系方式</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td>省份</td>
+			<td>
+				<select>
+				  <option>湖南</option>
+			      <option>湖北</option>
+			      <option>北京</option>
+			      <option>四川</option>
+			      <option>天津</option>
+			      <option>重庆</option>
+			      <option>江西</option>
+			      <option>广州</option>
+			      <option>云南</option>
+			      <option>海南</option>
+			      <option>黑龙江</option>
+			      <option>福建</option>
+			    </select>
+			</td>
+			<!-- <td><img src="images/onFocus.gif" /></td> -->
+			<td colspan="2"><div>请选择您所在的省份</div></td>
+		</tr>
+		<tr>
+			<td><img src="images/register-arrow.gif" class="img" /></td>
+			<td>城市：</td>
+			<td>
+				<select>
+			      <option>岳阳</option>
+			      <option>长沙</option>
+			      <option>衡阳</option>
+			      <option>株洲</option>
+			      <option>常德</option>
+			      <option>永州</option>
+			      <option>娄底</option>
+			      <option>郴州</option>
+			      <option>张家界</option>
+			      <option>吉首</option>
+			      <option>邵阳</option>
+			      <option>益阳</option>
+		    	</select>
+			</td>
+			<!-- <td><img src="images/onFocus.gif" /></td> -->
+			<td colspan="2">请选择您所在的城市</td>
+		</tr>
+		<tr><td colspan="5"><input type="image" src="images/register-sm2.gif" /></td></tr>
+	</table>
+</div>
+<script type="text/javascript">
+	//封装
+function $(id){
+	return document.getElementById(id);
+}
+
+//验证会员名是否可用
+function checkname(obj,imgid,divid){
+	//alert($("username").value);
+	//alert(obj.value);
+	//会员名以字母或汉字开头，由3-18位的数字、字母、下划线、汉字组成   \u4e00-\u9fa5
+	var reg=/^[a-zA-Z\u4e00-\u9fa5]{2,6}$/;
+	if(reg.test(obj.value)){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+
+//验证真实姓名
+function checkmyname(obj,imgid,divid){
+	var reg=/^[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9_\u4e00-\u9fa5]{2,17}$/;
+	if(reg.test(obj.value)){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+
+//验证密码
+function checkpwd(obj,imgid,divid){
+	var reg=/\w{6,16}/;
+	if(reg.test(obj.value)){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+
+//重复验证密码
+function checkpwd2(obj,imgid,divid,prepwd){
+	
+	if(obj.value==$(prepwd).value){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+
+//验证ID
+function checkid(obj,imgid,divid){
+	var reg=/\d{15}|\d{18}/;
+	if(reg.test(obj.value)){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+
+
+//验证邮箱
+function checkemail(obj,imgid,divid){
+	var reg=/^[a-zA-Z0-9]\w+@\w+(\.[a-zA-Z]+){1,3}$/;
+	if(reg.test(obj.value)){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+
+//验证联系方式
+function checktel(obj,imgid,divid){
+	var reg=/\w{11}/;
+	if(reg.test(obj.value)){
+		$(imgid).src="images/onCorrect.gif";
+		$(divid).style.color="green";
+	}else{
+		$(imgid).src="images/onError.gif";
+		$(divid).style.color="red";
+	}
+}
+</script>
+</body>
+</html>

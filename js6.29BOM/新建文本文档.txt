@@ -1,0 +1,2 @@
+BOM：Browser Object Wcdel  浏览器对象模型
+DOM模型是BOM的一部分

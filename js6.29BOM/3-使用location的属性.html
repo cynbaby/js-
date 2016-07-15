@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3-使用location的属性</title>
+</head>
+<body>
+	<div id="demo1">点击这里获取ＵＲＬ信息</div>
+	<div id="demo2">location.href ->跳转到Baidu首页</div>
+	<div id="demo3">assign -> 跳转</div>
+	<div id="demo4">replace -> 跳转</div>
+	<div id="demo5">reload -> 跳转</div>
+	<script type="text/javascript">
+		document.getElementById("demo1").onclick=function(){
+			alert(
+				"当前ＵＲＬ信息:n"+
+				"URL: "+location.href+"\n"+
+				"域名:"+location.host+"\n"+
+				"主域名:"+location.hostname+"\n"+
+				"路径:"+location.pathname+"\n"+
+				"协议:"+location.protocol+"\n"+
+				"参数:"+location.search+"\n"+
+				"hash:"+location.hash
+			);
+		}
+		
+		document.getElementById("demo2").onclick=function(){
+			location.herf="http://www.baidu.com";
+		}
+		document.getElementById("demo3").onclick=function(){
+			location.assign("http://www.baidu.com");
+		}
+		document.getElementById("demo4").onclick=function(){
+			location.replace("http://www.baidu.com")
+		}
+		document.getElementById("demo5").onclick=function(){
+			location.reload();
+		}
+	</script>
+</body>
+</html>

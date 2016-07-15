@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节点操作测试</title>
+	<script type="text/javascript" src="yclib.js"></script>
+</head>
+<body>
+	<p id="a">a</p>
+	<p id="b">bb</p>
+	<p id="c">ccc</p>
+
+	<script type="text/javascript">
+		var newnode=document.createElement("p");
+		var txtnode=document.createTextNode("hello");
+		newnode.appendChild( txtnode );
+
+		yc.insertAfter( newnode, yc.$("b") );
+		
+	</script>
+</body>
+</html>

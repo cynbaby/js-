@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组中的属性值</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Person(name,age){
+			this.name=name;
+			this.age=age;
+		}
+		Person.prototype={
+			showInfo:function(){
+				document.write("姓名: "+this.name+" 年龄: "+this.age);
+			}
+		};
+		function Emp(name,age,salary){
+			Person.call(this,name,age);
+			this.salary=salary;
+		}
+		Emp.prototype=new Person();
+		Emp.prototype.pay=function(){
+			document.write("姓名: "+this.name+" 年龄: "+this.age+" 工资: "+this.salary);
+		}
+		var p=new Emp('smith',20,40000);
+		p.showInfo();
+		p.pay();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+创建元素节点：document.creatElement
+创建文本节点：document.creatTextnode
