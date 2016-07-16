@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.redText{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function TreeItem(text,link,icon){
+			this.text=text;
+			this.link=link;
+			this.icon=icon;
+			this.sonItems=[];
+		}
+
+		//扩展功能
+		TreeItem.prototype={
+			//添加  子节点的功能
+			attributes:{
+				className:'',
+			},
+			addSonItem:function(sonItem){
+				this.sonItems.push(sonItem);
+				
+			},
+			getSonItemCount:function(){
+				return this.sonItems.length;
+			},
+			getAllSonItem:function(){
+				return this.sonItems;
+			},
+			showItem:function(parentNode){
+				var root;
+				if(this.sonItems.length<=0){
+					 root=document.createElement("li");
+					if(this.links){
+						var a=document.createElement("A");
+						a.href=this.links;
+						var txt=document.createTextNode(this.text);
+						a.appendChild(txt);
+						root.appendChild(a);
+					}else{
+						var txt=document.createTextNode(this.text);
+						root.appendChild(txt);
+					}
+					
+					parentNode.appendChild(root);
+					return ;
+				}
+				root=document.createElement("li");
+				var txt=document.createTextNode(this.text);
+				root.appendChild(txt);
+				var ulnode=document.createElement("ul");
+				root.appendChild(ulnode);
+				for(var i=0;i<this.sonItems.length;i++){
+					var si=this.sonItems[i];
+					si.showItem(ulnode);
+				}				
+				parentNode.appendChild(root);
+			}
+		};
+
+		
+
+
+		//这个函数的作用：将jsonarray中的数据包装到parentNode.sonItem
+		function walk(parentNode,jsonarray){
+			for(var i=0;i<jsonarray.length;i++){
+				var jsonobject=jsonarray[i];
+				var ti=new TreeItem(jsonobject.text,jsonobject.icon,jsonobject.link);
+				parentNode.addSonItem(ti);
+				if(jsonobject.sonItems!=null&&jsonobject.sonItems.length>0){
+					//用户管理+子节点
+					walk(ti,jsonobject.sonItems);
+				}
+			}
+		}
+		var result='[{\"id\":1,\"text\":\"后台管理\",\"icon\":\"star\",\"sonItems\":[{\"id\":2,\"text\":\"用户管理\",\"sonItems\":[{\"id\":6,\"text\":\"用户浏览\",\"url\":\"xxx.com\"},{\"id\":7,\"text\":\"用户浏览\",\"url\":\"xxx.com\"},{\"id\":8,\"text\":\"用户浏览\",\"url\":\"xxx.com\"}]},{\"id\":3,\"text\":\"平台信息\",\"sonItems\":[]},{\"id\":4,\"text\":\"商品管理\",\"sonItems\":[]},{\"id\":5,\"text\":\"订单管理\",\"sonItems\":[]}]}]';
+		// var result="[{\"id\":\"0\",\"text\":\"后台管理\",\"icon\":\"star\",\"sonItems\":[{\"id\":\"1\",\"text\":\"用户管理\",\"icon\":\"star\",\"sonItems\":[{\"id\":\"4\",\"text\":\"用户浏览\"},{\"id\":\"5\",\"text\":\"VIP客户\"},{\"id\":\"6\",\"text\":\"通知\"}]},{\"id\":\"2\",\"text\":\"平台信息\",\"icon\":\"star\",\"sonItems\":[{\"id\":\"7\",\"text\":\"用户浏览\"},{\"id\":\"8\",\"text\":\"用户浏览\"},{\"id\":\"9\",\"text\":\"用户浏览\"}]},{\"id\":\"3\",\"text\":\"商品管理\",\"icon\":\"star\",\"sonItems\":[{\"id\":\"10\",\"text\":\"商品浏览\"},{\"id\":\"11\",\"text\":\"商品列表\"}]},{\"id\":\"4\",\"text\":\"订单管理\",\"icon\":\"star\",\"sonItems\":[{\"id\":\"12\",\"text\":\"历史订单\"},{\"id\":\"13\",\"text\":\"订单浏览\"}]}]}]";
+
+
+		var jsonarray=eval("("+result+")");//jsonarray当成对象来看
+		var root;
+
+		if(jsonarray!=null&&jsonarray.length>0){
+			var rootobject=jsonarray[0];
+			//根节点 普通对象object  而不是TreeItem
+		root=new TreeItem(rootobject.text,rootobject.icon,rootobject.link);//根节点
+			if(rootobject.sonItems!=null&&rootobject.sonItems.length>0){
+				walk(root,rootobject.sonItems);
+			}
+		}
+		root.showItem(document.body);
+		// 表示添加到文本body里面去
+	</script>
+</body>
+</html>

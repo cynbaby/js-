@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<div id="mydiv"></div>
+	<script type="text/javascript">
+		var template='<table border="{border}">'+
+			'<tr><th>Last</th><td>{last}</td></tr>'+
+			'<tr><th>First</th><td>{first}</td></tr>'+
+			'</table>';
+			document.write(template);
+		var data={
+			"first":"Carl",
+			"last":"Hollywood",
+			"border":10  
+		}
+
+		//{}分组
+		var datatemplate=function(template,data){
+			for(var i in data){
+				//i:first,last,border
+				template=template.replace("{"+i+"}",data[i]);
+				//template,replace("{border}",data["border"]);
+			}
+			return template;
+		};
+		document.write(datatemplate);
+	</script>
+</body>
+</html>

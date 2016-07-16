@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="dzy.js"></script>
+</head>
+<body>
+	<div id="mydiv"></div>
+	<script type="text/javascript">
+		var template='<table border="{border}">'+
+			'<tr><th>Last</th><td>{last}</td></tr>'+
+			'<tr><th>First</th><td>{first}</td></tr>'+
+			'</table>';
+
+		var data={
+			"first":"Carl",
+			"last":"Hollywood",
+			"border":10  
+		}
+
+		yc.$("mydiv").innerHTML=yc.supplant( template,data);
+	</script>
+</body>
+</html>

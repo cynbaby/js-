@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示json的商品数据</title>
+	<script type="text/javascript" src="dzy.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		var person=new Object();//window的object   window的yc
+		person.name="zy";
+		person.age=30;
+		person.sex="男";
+		
+		alert(person.toString());
+
+		//需求：给object类的protoype添加一个功能  toJSONString()，将属性的值以json格式输出
+	//{"name":"zy","age":30,"sex":"男"}
+	//for(var i in person) person[i]取出值
+	//
+		alert(person.toJSONString());//得到{"name":"zy","age":30,"sex":"男"}
+
+		var person2=new Object();//window的object   window的yc
+		person2.name="zwy";
+		person2.age=30;
+		person2.sex="男";
+
+		// var arr=new Object();//window的object   window的yc
+		// arr.push(person);
+		// arr.push(person2);
+
+		// alert(arr.toJSONString());//[{"name":"zy","age":30,"sex":"男"},{"name":"zy","age":30,"sex":"男"}]
+
+
+		var obj3={"name":"zy","age":20};
+		alert(obj3.toJSONString());
+
+		var arr=new Array();
+		arr[0]={"name":"zy1","age":20};
+		arr[1]={"name":"zy2","age":20};
+		alert(arr.toJSONString());
+	</script>
+</body>
+</html>

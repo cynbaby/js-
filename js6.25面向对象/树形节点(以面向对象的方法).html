@@ -104,33 +104,43 @@
 			
 	};
 
-		var tree=new TreeItem('root','','');
-		//root.attributes.className='redText';
+		// var tree=new TreeItem('root','','');
+		// //root.attributes.className='redText';
 
-		var t1=new TreeItem('t1','','');
-		var t2=new TreeItem('t2','','');
-		tree.addSonItem(t1);
-		tree.addSonItem(t2);
+		// var t1=new TreeItem('t1','','');
+		// var t2=new TreeItem('t2','','');
+		// tree.addSonItem(t1);
+		// tree.addSonItem(t2);
 
-		//var t11=new TreeItem('t11','','');
+		// //var t11=new TreeItem('t11','','');
+
+		// // var t111=new TreeItem('baidu','http://www.baidu.com','');
+		// // t11.addSonItem(t111);
+
+		// var t11=new TreeItem('t11','','');
+		// var t22=new TreeItem('t22','','');
+		// t1.addSonItem(t11);
+		// t1.addSonItem(t22);
 
 		// var t111=new TreeItem('baidu','http://www.baidu.com','');
 		// t11.addSonItem(t111);
+		// var t21=new TreeItem('t21','','');
+		// t2.addSonItem(t21);
 
-		var t11=new TreeItem('t11','','');
-		var t22=new TreeItem('t22','','');
-		t1.addSonItem(t11);
-		t1.addSonItem(t22);
+		// var allit=tree.getAllSonItem();
 
-		var t111=new TreeItem('baidu','http://www.baidu.com','');
-		t11.addSonItem(t111);
-		var t21=new TreeItem('t21','','');
-		t2.addSonItem(t21);
-
-		var allit=tree.getAllSonItem();
-
-		tree.showItem(document.body);
-
+		// tree.showItem(document.body);
+/////////////////////////////////////接下来采用的是JSON的做法////////////////////////////////
+	//这个函数的作用：将 jsonarray中的数据包装到parentNode.sonItem
+		function walk( parentNode,jsonarray){
+			for( var i=0;i<jsonarray.length;i++ ){
+				var ti=new TreeItem( jsonobject.text,jsonobject.icon,jsonobject.link );
+					parentNode.addSonItem(ti);
+					if( jsonobject.sonItems!=null&&jsonobject.sonItems.length>0){
+						walk(ti,  jsonobject.sonItems );
+					}
+			}
+		}
 
 		// root.addSonItem(t1);
 		// root.addSonItem(t2);

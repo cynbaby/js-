@@ -13,11 +13,11 @@
 			}
 			return v;
 		});
-		alert( obj.name+"t"+obj.age);
+		alert( obj.name+"\t"+obj.age);
 		var obj2=yc.parseJson('{"name":"smith","age":-50}', function(k,v){
 			return (k=='age'&&v<0)?1:v;
 		});
-		alert(obj2.name+"t"+obj2.age);
+		alert(obj2.name+"\t"+obj2.age);
 
 		// //更复杂的情况出现：{"name":"tom","age":20,"address":"province":"湖南","postcode":"12345678"}};
 		// var obj3=yc.parseJson( {"name":"tom","age":20,"address":"province":"湖南","postcode":"12345678"});

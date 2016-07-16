@@ -72,7 +72,7 @@
 		//MSIE的事件
 		node['e'+type+listener]=listener;
 		node[type+listener]=function(){
-			node['e'+type+listener](window.event);
+			node['e'+type+listener](window.event);//防止事件重名
 			//listener(window.event);
 		}
 		node.attachEvent('on'+type,node[type+listener]);
